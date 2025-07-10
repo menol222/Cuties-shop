@@ -1,0 +1,781 @@
+
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cuties Shop</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #f8f9fa;
+    }
+    .navbar {
+      background-color: #6a1b9a;
+    }
+    .navbar-brand, .nav-link, .bi {
+      color: white !important;
+    }
+    .product-card img, .category-card img {
+      height: 200px;
+      object-fit: cover;
+      border-bottom: 1px solid #eee;
+    }
+    .card {
+      border-radius: 0.75rem;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    }
+    .btn-primary {
+      background-color: #6a1b9a;
+      border-color: #6a1b9a;
+    }
+    .btn-primary:hover {
+      background-color: #5b1585;
+      border-color: #5b1585;
+    }
+    .category-card {
+      cursor: pointer;
+      transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    }
+    .category-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    }
+    /* Inicialmente, todas las secciones (excepto login/register, controladas por JS) están ocultas */
+    #bienvenida, #categorias, #productosCategoria, #carrito, #pagoBox, #registerBox {
+      display: none;
+    }
+    #navbarCart {
+      display: none; /* Se mostrará solo cuando el usuario esté logueado */
+    }
+    .cart-item {
+      transition: all 0.3s ease;
+    }
+    .cart-item:hover {
+      background-color: #f8f9fa;
+    }
+  </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#" onclick="volverInicio()">Cuties Shop</a>
+    <div class="d-flex align-items-center" id="navbarCart">
+      <span id="userNameDisplay" class="text-white me-3 d-none"></span> 
+      <button class="btn btn-link nav-link position-relative" onclick="mostrarCarrito()">
+        <i class="bi bi-cart-fill fs-4"></i>
+        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="cartCount">0</span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<div class="container my-4">
+  <div id="loginBox" class="card p-4">
+    <h3 class="mb-3 text-center">Iniciar sesión</h3>
+    <input type="text" id="loginUser" class="form-control mb-2" placeholder="Usuario">
+    <input type="password" id="loginPass" class="form-control mb-3" placeholder="Contraseña">
+    <button class="btn btn-primary w-100 mb-2" onclick="login()">Ingresar</button>
+    <button class="btn btn-secondary w-100" onclick="mostrarRegistro()">Registrar</button>
+  </div>
+
+  <div id="registerBox" class="card p-4">
+    <h3 class="mb-3 text-center">Registrar usuario</h3>
+    <input type="text" id="registerUser" class="form-control mb-2" placeholder="Usuario">
+    <input type="password" id="registerPass" class="form-control mb-2" placeholder="Contraseña">
+    <input type="password" id="registerPassConfirm" class="form-control mb-3" placeholder="Confirmar Contraseña">
+    <button class="btn btn-primary w-100 mb-2" onclick="register()">Registrar</button>
+    <button class="btn btn-secondary w-100" onclick="mostrarSeccion('loginBox')">Volver</button>
+  </div>
+
+  <div id="bienvenida">
+  <div class="card p-4 text-center">
+    <!-- Imagen de portada -->
+    <img src="https://www.fotoplus2000.com/wp-content/uploads/2016/12/Productos-Personalizados-Perfectos-para-Regalos-BANNER-home.png" 
+         class="img-fluid rounded mb-4" 
+         alt="Portada Cuties Shop"
+         style="max-height: 300px; object-fit: cover;">
+    
+    <h2 class="mb-3">Bienvenido a Cuties Shop</h2>
+    <p class="lead"><em>"Creando para ti"</em></p>
+    <p class="mb-4">Somos una empresa dedicada a la venta de artículos personalizados como tazas, termos, vasos y botellas, hechos con amor para cada cliente.</p>
+    
+    <!-- Barra de contacto mejorada -->
+    <div class="row g-3 mb-4">
+      <!-- WhatsApp con imagen personalizada -->
+      <div class="col-md-4">
+        <a href="http://wa.me/18096659100" target="_blank" class="text-decoration-none">
+          <div class="p-3 border rounded hover-effect bg-light">
+            <!-- Reemplaza con tu imagen de WhatsApp -->
+            <img src="https://iili.io/JYCVqgt.png" 
+                 alt="WhatsApp" 
+                 style="width: 50px; height: 50px; object-fit: contain; margin-bottom: 10px;">
+            <h5 class="mb-1">WhatsApp</h5>
+            <p class="mb-0 text-dark">809-665-100</p>
+            <small class="text-muted">(Haz clic para chatear)</small>
+          </div>
+        </a>
+      </div>
+      
+      <!-- Instagram -->
+      <div class="col-md-4">
+        <a href="https://www.instagram.com/mariposas_cuties.rd/?igsh=MTk3MHBrdTU4b284Yw%3D%3D#" target="_blank" class="text-decoration-none text-dark">
+          <div class="p-3 border rounded hover-effect bg-light">
+            <img src="https://i.pinimg.com/564x/96/cc/7d/96cc7d89411132dd394078c9ef920b69.jpg" 
+                 alt="Instagram" 
+                 style="width: 50px; height: 50px; object-fit: contain; margin-bottom: 10px;">
+            <h5 class="mb-1">Instagram</h5>
+            <p class="mb-0">@mariposas_cuties</p>
+            <small class="text-muted">(Haz clic para ver)</small>
+          </div>
+        </a>
+      </div>
+      
+      <!-- Dirección con mapa -->
+      <div class="col-md-4">
+        <a href="https://maps.app.goo.gl/r6HWDRe1qf6hCogc6">
+          <div class="p-3 border rounded hover-effect bg-light">
+            <img src="https://cdn-icons-png.flaticon.com/512/854/854878.png" 
+                 alt="Dirección" 
+                 style="width: 50px; height: 50px; object-fit: contain; margin-bottom: 10px;">
+            <h5 class="mb-1">Ubicación</h5>
+            <p class="mb-0">Carretera Salcedo-Tenares Km 5</p>
+            <small class="text-muted">(Ver en mapa)</small>
+          </div>
+        </a>
+      </div>
+    </div>
+    
+    <!-- Botones mejorados -->
+    <div class="d-grid gap-3">
+      <!-- Botón de catálogo destacado -->
+      <button class="btn btn-primary py-3 btn-catalog" onclick="mostrarCategorias()">
+        <div class="d-flex justify-content-center align-items-center">
+          <i class="bi bi-box-seam me-3 fs-4"></i>
+          <div class="text-start">
+            <h4 class="mb-0">Explora nuestro catálogo</h4>
+            <small class="fw-light">Descubre todos nuestros productos</small>
+          </div>
+          <i class="bi bi-arrow-right ms-3 fs-4"></i>
+        </div>
+      </button>
+      
+      <button class="btn btn-danger py-2" onclick="logout()">
+        <i class="bi bi-box-arrow-right me-2"></i> Cerrar sesión
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Estilos personalizados -->
+<style>
+  .hover-effect {
+    transition: all 0.3s ease;
+    border: 1px solid #dee2e6 !important;
+  }
+  .hover-effect:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    background-color: #f8f9fa !important;
+  }
+  
+  .btn-catalog {
+    transition: all 0.3s ease;
+    border: none;
+    background: linear-gradient(135deg, #6a1b9a, #9c27b0);
+    box-shadow: 0 4px 6px rgba(106, 27, 154, 0.3);
+  }
+  
+  .btn-catalog:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 15px rgba(106, 27, 154, 0.4);
+    background: linear-gradient(135deg, #7b1fa2, #ab47bc);
+  }
+  
+  .btn-catalog:active {
+    transform: translateY(1px);
+  }
+</style>
+
+  <div id="categorias">
+    <h3 class="mb-4 text-center">Explora Nuestras Categorías</h3>
+    <div class="row" id="listaCategorias"></div>
+    <button class="btn btn-secondary mt-4" onclick="volverInicio()">Volver a inicio</button>
+  </div>
+
+  <div id="productosCategoria">
+    <h3 id="tituloCategoria" class="mb-4 text-center"></h3>
+    <div class="row" id="listaProductos"></div>
+    <button class="btn btn-secondary mt-4" onclick="mostrarCategorias()">Volver a categorías</button>
+  </div>
+
+  <div id="carrito" class="card p-4">
+    <h3 class="mb-4">🛒 Tu Carrito de Compras</h3>
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Producto</th>
+            <th class="text-center">Precio Unitario</th>
+            <th class="text-center">Cantidad</th>
+            <th class="text-center">Subtotal</th>
+            <th class="text-center">Acciones</th>
+          </tr>
+        </thead>
+        <tbody id="listaCarrito">
+          <tr id="emptyCartMessage">
+            <td colspan="5" class="text-center text-muted">El carrito está vacío.</td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td colspan="3" class="text-end fw-bold">Total:</td>
+            <td class="text-center fw-bold" id="total">$0.00</td>
+            <td></td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+    <div class="d-flex justify-content-between mt-3">
+      <button class="btn btn-outline-danger" onclick="vaciarCarrito()">
+        <i class="bi bi-trash"></i> Vaciar Carrito
+      </button>
+      <div>
+        <button class="btn btn-info me-2" onclick="cotizar()">
+          <i class="bi bi-file-earmark-text"></i> Hacer cotización
+        </button>
+        <button class="btn btn-success" onclick="mostrarSeccion('pagoBox')">
+          <i class="bi bi-credit-card"></i> Realizar pago
+        </button>
+      </div>
+    </div>
+    <button class="btn btn-danger py-2" onclick="volverInicio()">Volver</button>
+  </div>
+
+  <div id="pagoBox" class="card p-4">
+    <h3 class="mb-4 text-center">💳 Información de Pago</h3>
+    <div class="mb-3">
+      <label for="nombreTitular" class="form-label">Nombre del titular</label>
+      <input type="text" id="nombreTitular" class="form-control" placeholder="Nombre como aparece en la tarjeta" required>
+    </div>
+    <div class="mb-3">
+      <label for="numeroTarjeta" class="form-label">Número de tarjeta</label>
+      <input type="text" id="numeroTarjeta" class="form-control" placeholder="1234 5678 9012 3456" maxlength="19" required>
+    </div>
+    <div class="row mb-3">
+      <div class="col-md-6">
+        <label for="fechaExpiracion" class="form-label">Fecha de expiración</label>
+        <input type="text" id="fechaExpiracion" class="form-control" placeholder="MM/AA" maxlength="5" required>
+      </div>
+      <div class="col-md-6">
+        <label for="cvv" class="form-label">CVV</label>
+        <input type="text" id="cvv" class="form-control" placeholder="123" maxlength="4" required>
+      </div>
+    </div>
+    <div class="d-flex justify-content-between">
+      <button class="btn btn-secondary" onclick="mostrarCarrito()">
+        <i class="bi bi-arrow-left"></i> Volver al carrito
+      </button>
+      <button class="btn btn-success" onclick="pagar()">
+        <i class="bi bi-check-circle"></i> Confirmar pago
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="toast-container position-fixed bottom-0 end-0 p-3">
+  <div id="liveToast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="toast-header">
+      <strong class="me-auto">Cuties Shop</strong>
+      <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+    </div>
+    <div class="toast-body" id="toastBody"></div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  // Datos y estado de la aplicación
+  let users = JSON.parse(localStorage.getItem('users')) || { 'admin': 'admin123', 'test': 'test123' };
+  let carrito = JSON.parse(localStorage.getItem('carrito')) || []; // Ahora cargamos el carrito directamente
+  let usuarioActual = localStorage.getItem('usuarioActual') || ""; 
+
+  // Referencias a elementos del DOM
+  const navbarCart = document.getElementById('navbarCart');
+  const userNameDisplay = document.getElementById('userNameDisplay');
+  const cartCount = document.getElementById('cartCount');
+  const toastLiveExample = document.getElementById('liveToast');
+  let toastBootstrap;
+
+  // Definición de categorías y productos
+  const categorias = [
+    {
+      nombre: "Tazas",
+      img: "https://promoscreativos.com/wp-content/uploads/2021/09/TAZAS-Y-TARROS-SUBLIMABLES-2-1024x840.jpg",
+      productos: [
+        { nombre: "Taza Blanca personalizada ", precio: 350, img: "https://i0.wp.com/metropolis.com.do/wp-content/uploads/2019/07/tazas-blancas-personalizadas-papeleria-metropolis.jpg?resize=510%2C510&ssl=1" },
+        { nombre: "Taza Mágica", precio: 550, img: "https://www.printideasonline.com/cdn/shop/products/Webproductos-27.png?v=1679604739" },
+        { nombre: "Taza conica", precio: 450, img: "https://resources.claroshop.com/medios-plazavip/mkt/6472484caa531_taza-ceramica-12oz-c-nica-interior-y-asa-de-colorpng.jpg" },
+        { nombre: "Taza Aza y interior de color", precio: 450, img: "https://geekolor.com/wp-content/uploads/2021/10/m_TAZA-4.jpg" },
+        { nombre: "Taza Pareja", precio: 700, img: "https://publilima.com/wp-content/uploads/publilima-tazperosonalizadas-7-.jpg" },
+        { nombre: "Taza con tapa de Silicon", precio: 550, img: "https://static.wixstatic.com/media/3fcf03_f33e9f3f31d64ade8e67605a01342dcc~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg" }
+      ]
+    },
+    {
+      nombre: "Termos",
+      img: "https://www.brildor.com/blog/wp-content/uploads/2022/05/cabecera-termos-botellas-sublimacion-plancha-tazas-1.jpg",
+      productos: [
+        { nombre: "Termo de Acero Inoxidable", precio: 850, img: "https://colmenero.shop/cdn/shop/products/SUB140_lrg-termo-roio-sublimacion-promocionales.jpg?v=1704911758" },
+        { nombre: "Termo tapa negra", precio: 650, img: "https://bazarreina.com/wp-content/uploads/2021/07/1027.jpg" }
+      ]
+    },
+    {
+      nombre: "Vasos",
+      img: "https://m.media-amazon.com/images/I/71PQvdyut7L._UF894,1000_QL80_.jpg",
+      productos: [
+        { nombre: "Vaso vino", precio: 750, img: "https://geekolor.com/wp-content/uploads/2021/10/vaso-de-acero-300-ml-1.png" },
+        { nombre: "Vaso con chupi", precio: 1400, img: "https://i.etsystatic.com/19071975/r/il/54cc1f/2456719474/il_570xN.2456719474_kmjl.jpg" }
+      ]
+    },
+    {
+      nombre: "Botellas",
+      img: "https://sheedostudio.com/wp-content/uploads/2024/11/IMG_0691--scaled.webp",
+      productos: [
+        { nombre: "Botella Variadas", precio: 500, img: "https://cdnx.jumpseller.com/todoenimpresion/image/33526820/resize/610/610?1680144003" },
+        { nombre: "Botella Termica", precio: 1300, img: "https://www.quattrum.com.ar/wp-content/uploads/2021/04/93Q301-Botella-acero-500ml.jpg" }
+      ]
+    },
+    {
+      nombre: "Jarras",
+      img: "https://printechpanama.com/cdn/shop/products/jarrascerveceras_2048x.png?v=1616337662",
+      productos: [
+        { nombre: "Jarra Pequeña", precio: 400, img: "https://d22fxaf9t8d39k.cloudfront.net/0a368f93c21a76ad7d2d8a55b2610277fe3e01aa1043c881f9de425c39aed4da84710.jpg" },
+        { nombre: "Jarra Grande", precio: 600, img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQaU7582CE-6gEMealePuqpOVSYBmO_AV750w&s" }
+      ]
+    },
+    {
+      nombre: "Llaveros",
+      img: "https://i.etsystatic.com/29195867/r/il/c8b84c/3775690117/il_fullxfull.3775690117_g8si.jpg",
+      productos: [
+        { nombre: "Corazon", precio: 250, img: "https://avanceytec.mx/25109-large_default/llavero-de-corazon-de-polimero-sublimarts-para-sublimacion.jpg" },
+        { nombre: "Redondo", precio: 250, img: "https://tazonespublicitarios.cl/wp-content/uploads/2017/07/llavero-personalizado-promocional-redondo.jpg" },
+        { nombre: "Cuadrado", precio: 250, img: "https://ramitexnicaragua.com/wp-content/uploads/2023/07/PLLA-1030.jpg" }
+      ]
+    },
+    {
+      nombre: "Rompe Cabeza",
+      img: "https://cdn.ready-market.com.tw/24cfa4d4/Templates/pic/20200513-t1419-custom-puzzles-6.jpg?v=46e416e0",
+      productos: [
+        { nombre: "Cuadrado", precio: 350, img: "https://www.tufotoregalo.com.ar/wp-content/uploads/2022/11/AnyConv.com__57.webp" },
+        { nombre: "Rectangular", precio: 350, img: "https://www.druckmaster.es/wp-content/uploads/2021/04/puzzle-a4-personalizable.jpg" },
+        { nombre: "Corazon", precio: 250, img: "https://m.media-amazon.com/images/I/71jZqPQrLuL.jpg" }
+      ]
+    },
+    {
+      nombre: "Mouse Pad",
+      img: "https://sublimarcosrd.com/wp-content/uploads/2024/03/D_NQ_NP_761769-MLU50138774737_052022-O.webp",
+      productos: [
+        { nombre: "Cuadrado", precio: 250, img: "https://cdnx.jumpseller.com/radical/image/58702783/F-1.jpg?1735513338" },
+        { nombre: "Rectangular", precio: 350, img: "https://www.timg.pe/cdn/shop/files/Mouse-pad-de-Juego-Sublimable-40x60-Sublimacion-8.webp?v=1720184266" },
+        { nombre: "Redondo", precio: 200, img: "https://tubelitegt.tubelitecentroamerica.com/cdn/shop/products/fd3ea19e0a172ba2ee321c340d205631.jpg?v=1694659774" }
+      ]
+    }
+    
+  ];
+
+  // --- Funciones de Utilidad ---
+
+  function guardarEstado() {
+    localStorage.setItem('users', JSON.stringify(users));
+    localStorage.setItem('carrito', JSON.stringify(carrito));
+    if (usuarioActual) {
+      localStorage.setItem('usuarioActual', usuarioActual);
+    }
+  }
+
+  function mostrarToast(mensaje) {
+    document.getElementById('toastBody').innerText = mensaje;
+    toastBootstrap.show();
+  }
+
+  function mostrarSeccion(seccionId) {
+    const secciones = ['loginBox', 'registerBox', 'bienvenida', 'categorias', 'productosCategoria', 'carrito', 'pagoBox'];
+    secciones.forEach(id => {
+      document.getElementById(id).style.display = 'none';
+    });
+
+    // Redirigir al login si no hay usuario logueado y la sección no es login/register
+    if (seccionId !== 'loginBox' && seccionId !== 'registerBox' && !usuarioActual) {
+      document.getElementById('loginBox').style.display = 'block';
+      navbarCart.style.display = 'none'; 
+      mostrarToast("Necesitas iniciar sesión para acceder a esta sección.");
+      return;
+    }
+
+    document.getElementById(seccionId).style.display = 'block';
+
+    // Control de visibilidad del carrito en navbar
+    if (!usuarioActual) { 
+      navbarCart.style.display = 'none';
+    } else { 
+      navbarCart.style.display = 'flex';
+      // Si la sección que se va a mostrar es el carrito, lo renderizamos
+      if (seccionId === 'carrito') {
+        renderizarCarrito(); 
+      }
+    }
+  }
+
+  function actualizarContadorCarrito() {
+    const totalItems = carrito.reduce((total, item) => total + (item.cantidad || 0), 0); 
+    cartCount.innerText = totalItems;
+  }
+
+  // --- Funciones de Autenticación ---
+
+  function mostrarRegistro() {
+    mostrarSeccion('registerBox');
+    document.getElementById("registerUser").value = "";
+    document.getElementById("registerPass").value = "";
+    document.getElementById("registerPassConfirm").value = "";
+  }
+
+  function register() {
+    const user = document.getElementById("registerUser").value.trim();
+    const pass = document.getElementById("registerPass").value.trim();
+    const passConfirm = document.getElementById("registerPassConfirm").value.trim();
+
+    if (!user || !pass || !passConfirm) {
+        return mostrarToast("Por favor, completa todos los campos.");
+    }
+    if (pass.length < 6) {
+        return mostrarToast("La contraseña debe tener al menos 6 caracteres.");
+    }
+    if (pass !== passConfirm) {
+        return mostrarToast("Las contraseñas no coinciden.");
+    }
+    if (users[user]) {
+        return mostrarToast("Ya existe un usuario con esta cuenta. Por favor, intenta con otro nombre de usuario.");
+    }
+
+    users[user] = pass;
+    guardarEstado();
+    
+    // Mostrar mensaje de éxito con más detalle
+    mostrarToast(`¡Registro exitoso, ${user}! Tu cuenta ha sido creada correctamente. Ahora puedes iniciar sesión.`);
+    
+    // Limpiar el formulario
+    document.getElementById("registerUser").value = "";
+    document.getElementById("registerPass").value = "";
+    document.getElementById("registerPassConfirm").value = "";
+    
+    // Redirigir al login
+    mostrarSeccion('loginBox');
+}
+
+  function login() {
+    const user = document.getElementById("loginUser").value.trim();
+    const pass = document.getElementById("loginPass").value.trim();
+
+    if (users[user] && users[user] === pass) {
+      usuarioActual = user;
+      guardarEstado();
+      userNameDisplay.innerText = `Hola, ${user}!`;
+      userNameDisplay.classList.remove('d-none');
+      mostrarToast(`¡Bienvenido, ${usuarioActual}!`);
+      mostrarSeccion('bienvenida'); 
+      document.getElementById("loginUser").value = "";
+      document.getElementById("loginPass").value = "";
+      actualizarContadorCarrito(); 
+    } else {
+      mostrarToast("Usuario o contraseña incorrectos.");
+    }
+  }
+
+  function logout() {
+    usuarioActual = "";
+    guardarEstado();
+    userNameDisplay.classList.add('d-none');
+    mostrarToast("Has cerrado sesión.");
+    mostrarSeccion('loginBox'); 
+    actualizarContadorCarrito();
+  }
+
+  // --- Funciones de Navegación y Vistas ---
+
+  function volverInicio() {
+    mostrarSeccion('bienvenida'); 
+  }
+
+  function mostrarCategorias() {
+    mostrarSeccion('categorias');
+    renderCategorias();
+  }
+
+  function renderCategorias() {
+    const cont = document.getElementById("listaCategorias");
+    cont.innerHTML = ""; 
+    categorias.forEach(cat => {
+      const col = document.createElement("div");
+      col.className = "col-md-4 col-lg-3 mb-4";
+      col.innerHTML = `
+        <div class="card h-100 category-card" onclick="abrirCategoria('${cat.nombre}')">
+          <img src="${cat.img}" class="card-img-top" alt="${cat.nombre}">
+          <div class="card-body text-center">
+            <h5 class="card-title">${cat.nombre}</h5>
+          </div>
+        </div>`;
+      cont.appendChild(col);
+    });
+  }
+
+  function abrirCategoria(nombre) {
+    const cat = categorias.find(c => c.nombre === nombre);
+    if (!cat) return;
+
+    mostrarSeccion('productosCategoria');
+    document.getElementById("tituloCategoria").innerText = `Productos de ${cat.nombre}`;
+    const cont = document.getElementById("listaProductos");
+    cont.innerHTML = "";
+
+    if (cat.productos.length === 0) {
+      cont.innerHTML = `<div class="col-12 text-center text-muted">No hay productos disponibles en esta categoría.</div>`;
+      return;
+    }
+
+    cat.productos.forEach((p, index) => {
+      const col = document.createElement("div");
+      col.className = "col-sm-6 col-md-4 col-lg-3 mb-4";
+      col.innerHTML = `
+        <div class="card product-card h-100">
+          <img src="${p.img}" class="card-img-top" alt="${p.nombre}">
+          <div class="card-body text-center d-flex flex-column justify-content-between">
+            <div>
+              <h5 class="card-title">${p.nombre}</h5>
+              <p class="card-text text-muted">$${p.precio.toFixed(2)}</p>
+            </div>
+            <div>
+              <button class="btn btn-primary w-100 mb-2" onclick="agregarAlCarrito('${p.nombre}', ${p.precio}, '${p.img}')">
+                <i class="bi bi-cart-plus me-1"></i> Añadir
+              </button>
+              ${usuarioActual === 'admin' ? `
+                <button class='btn btn-danger w-100' onclick="eliminarProducto('${cat.nombre}', ${index})">
+                  <i class='bi bi-trash'></i> Eliminar (Admin)
+                </button>` : ""}
+            </div>
+          </div>
+        </div>`;
+      cont.appendChild(col);
+    });
+  }
+
+  function eliminarProducto(nombreCategoria, indexProducto) {
+      const cat = categorias.find(c => c.nombre === nombreCategoria);
+      if (cat && confirm(`¿Estás seguro de que quieres eliminar "${cat.productos[indexProducto].nombre}"? (Esto es solo una simulación, no se guarda)`)) {
+          cat.productos.splice(indexProducto, 1);
+          mostrarToast(`Producto eliminado (solo de esta sesión).`);
+          abrirCategoria(nombreCategoria); 
+      }
+  }
+
+  // --- Funciones del Carrito ---
+
+  function agregarAlCarrito(nombre, precio, img) {
+    const productoExistente = carrito.find(item => item.nombre === nombre);
+    
+    if (productoExistente) {
+        productoExistente.cantidad = (productoExistente.cantidad || 0) + 1; 
+    } else {
+        carrito.push({ 
+          nombre, 
+          precio, 
+          img, 
+          cantidad: 1, 
+          id: Date.now() 
+        });
+    }
+    
+    guardarEstado();
+    actualizarContadorCarrito();
+    mostrarToast(`${nombre} añadido al carrito.`);
+    // Refrescar la vista del carrito si ya está visible
+    if (document.getElementById('carrito').style.display === 'block') {
+        renderizarCarrito();
+    }
+  }
+
+  function mostrarCarrito() {
+    mostrarSeccion('carrito');
+    renderizarCarrito();
+  }
+
+  function renderizarCarrito() {
+    const lista = document.getElementById("listaCarrito");
+    lista.innerHTML = ""; 
+
+    let total = 0;
+
+    if (carrito.length === 0) {
+      lista.innerHTML = `<tr id="emptyCartMessage"><td colspan="5" class="text-center text-muted">El carrito está vacío.</td></tr>`;
+    } else {
+      carrito.forEach((item, index) => {
+        const subtotal = item.precio * item.cantidad; 
+        total += subtotal;
+        
+        const tr = document.createElement("tr");
+        tr.className = "cart-item";
+        tr.innerHTML = `
+          <td>
+            <div class="d-flex align-items-center">
+              <img src="${item.img}" alt="${item.nombre}" style="width: 50px; height: 50px; object-fit: cover; border-radius: 5px; margin-right: 10px;">
+              <span>${item.nombre}</span>
+            </div>
+          </td>
+          <td class="text-center">$${item.precio.toFixed(2)}</td>
+          <td class="text-center">
+            <div class="d-flex justify-content-center align-items-center">
+              <button class="btn btn-sm btn-outline-secondary" onclick="modificarCantidad(${index}, -1)">
+                <i class="bi bi-dash"></i>
+              </button>
+              <span class="mx-2">${item.cantidad}</span> 
+              <button class="btn btn-sm btn-outline-secondary" onclick="modificarCantidad(${index}, 1)">
+                <i class="bi bi-plus"></i>
+              </button>
+            </div>
+          </td>
+          <td class="text-center">$${subtotal.toFixed(2)}</td>
+          <td class="text-center">
+            <button class="btn btn-sm btn-outline-danger" onclick="eliminarDelCarrito(${index})">
+              <i class="bi bi-trash"></i>
+            </button>
+          </td>`;
+        lista.appendChild(tr);
+      });
+    }
+    
+    document.getElementById("total").textContent = `$${total.toFixed(2)}`;
+  }
+
+  function modificarCantidad(index, cambio) {
+    const item = carrito[index];
+    const nuevaCantidad = item.cantidad + cambio; 
+
+    if (nuevaCantidad < 1) {
+      eliminarDelCarrito(index);
+      return;
+    }
+    
+    item.cantidad = nuevaCantidad;
+    guardarEstado();
+    actualizarContadorCarrito();
+    renderizarCarrito(); 
+  }
+
+  function eliminarDelCarrito(index) {
+    const itemEliminado = carrito[index].nombre;
+    carrito.splice(index, 1);
+    guardarEstado();
+    actualizarContadorCarrito();
+    mostrarToast(`${itemEliminado} eliminado del carrito.`);
+    renderizarCarrito(); 
+  }
+
+  function vaciarCarrito() {
+      if (confirm("¿Estás seguro de que quieres vaciar todo el carrito?")) {
+          carrito = [];
+          guardarEstado();
+          actualizarContadorCarrito();
+          mostrarToast("El carrito ha sido vaciado.");
+          renderizarCarrito(); 
+      }
+  }
+
+  // --- Funciones de Compra / Pago ---
+
+  function cotizar() {
+    if (carrito.length === 0) {
+        return mostrarToast("Tu carrito está vacío. ¡Añade productos para cotizar!");
+    }
+    const total = document.getElementById("total").textContent;
+    mostrarToast(`Tu cotización ha sido generada. Total: ${total}. Te contactaremos pronto.`);
+  }
+
+  function pagar() {
+    if (carrito.length === 0) {
+      return mostrarToast("No hay productos en el carrito para pagar.");
+    }
+
+    // Validar campos del formulario de pago
+    const nombreTitular = document.getElementById('nombreTitular').value.trim();
+    const numeroTarjeta = document.getElementById('numeroTarjeta').value.trim().replace(/\s/g, '');
+    const fechaExpiracion = document.getElementById('fechaExpiracion').value.trim();
+    const cvv = document.getElementById('cvv').value.trim();
+
+    if (!nombreTitular) {
+      return mostrarToast("Por favor ingresa el nombre del titular de la tarjeta.");
+    }
+    
+    if (!numeroTarjeta || numeroTarjeta.length !== 16 || !/^\d+$/.test(numeroTarjeta)) {
+      return mostrarToast("Por favor ingresa un número de tarjeta válido (16 dígitos).");
+    }
+    
+    if (!fechaExpiracion || !/^\d{2}\/\d{2}$/.test(fechaExpiracion)) {
+      return mostrarToast("Por favor ingresa una fecha de expiración válida (MM/AA).");
+    }
+    
+    if (!cvv || (cvv.length !== 3 && cvv.length !== 4) || !/^\d+$/.test(cvv)) {
+      return mostrarToast("Por favor ingresa un CVV válido (3 o 4 dígitos).");
+    }
+
+    // Si todo está validado, procesar el pago
+    mostrarToast("Pago procesado correctamente. ¡Gracias por tu compra!");
+    carrito = []; 
+    guardarEstado();
+    actualizarContadorCarrito();
+    mostrarSeccion('bienvenida'); 
+    
+    // Limpiar el formulario de pago
+    document.getElementById('nombreTitular').value = '';
+    document.getElementById('numeroTarjeta').value = '';
+    document.getElementById('fechaExpiracion').value = '';
+    document.getElementById('cvv').value = '';
+  }
+
+  // --- Inicialización ---
+
+  document.addEventListener('DOMContentLoaded', () => {
+    toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample);
+    
+    if (usuarioActual) {
+        userNameDisplay.innerText = `Hola, ${usuarioActual}!`;
+        userNameDisplay.classList.remove('d-none');
+        mostrarSeccion('bienvenida'); 
+        actualizarContadorCarrito();
+    } else {
+        mostrarSeccion('loginBox'); 
+    }
+    
+    // Formatear número de tarjeta (agregar espacios cada 4 dígitos)
+    document.getElementById('numeroTarjeta').addEventListener('input', function(e) {
+      let value = e.target.value.replace(/\s/g, '');
+      if (value.length > 0) {
+        value = value.match(new RegExp('.{1,4}', 'g')).join(' ');
+      }
+      e.target.value = value;
+    });
+    
+    // Formatear fecha de expiración (MM/AA)
+    document.getElementById('fechaExpiracion').addEventListener('input', function(e) {
+      let value = e.target.value.replace(/\D/g, '');
+      if (value.length > 2) {
+        value = value.substring(0, 2) + '/' + value.substring(2, 4);
+      }
+      e.target.value = value;
+    });
+  });
+</script>
+</body>
+</html>
