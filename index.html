@@ -7,90 +7,27 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
   <style>
-    body {
-      background-color: #f8f9fa;
-    }
-    .navbar {
-      background-color: #6a1b9a;
-    }
-    .navbar-brand, .nav-link, .bi {
-      color: white !important;
-    }
-    /* Estilos para nav-tabs en el admin panel */
-    #adminPanel .nav-link {
-        color: #6a1b9a !important; /* Texto de las pestañas inactivo */
-        border-color: #dee2e6 #dee2e6 #fff;
-    }
-    #adminPanel .nav-link.active {
-        color: white !important; /* Texto de la pestaña activa */
-        background-color: #6a1b9a !important; /* Fondo de la pestaña activa */
-        border-color: #6a1b9a !important;
-        /* Para que el icono no se vea afectado por el !important de .navbar-brand, .nav-link, .bi */
-    }
-    #adminPanel .nav-link.active i {
-        color: white !important;
-    }
-    #adminPanel .nav-link i {
-        color: #6a1b9a !important;
-    }
-
-    .product-card img, .category-card img {
-      height: 200px;
-      object-fit: cover;
-      border-bottom: 1px solid #eee;
-    }
-    .card {
-      border-radius: 0.75rem;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.05);
-    }
-    .btn-primary {
-      background-color: #6a1b9a;
-      border-color: #6a1b9a;
-    }
-    .btn-primary:hover {
-      background-color: #5b1585;
-      border-color: #5b1585;
-    }
-    .category-card {
-      cursor: pointer;
-      transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-    }
-    .category-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 16px rgba(0,0,0,0.1);
-    }
-    .seccion {
-      display: none;
-    }
-    .seccion.active {
-      display: block;
-    }
-    .cart-item {
-      transition: all 0.3s ease;
-    }
-    .cart-item:hover {
-      background-color: #f8f9fa;
-    }
-    .hover-effect {
-      transition: all 0.3s ease;
-      border: 1px solid #dee2e6 !important;
-    }
-    .hover-effect:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-      background-color: #f8f9fa !important;
-    }
-    .btn-catalog {
-      transition: all 0.3s ease;
-      border: none;
-      background: linear-gradient(135deg, #6a1b9a, #9c27b0);
-      box-shadow: 0 4px 6px rgba(106, 27, 154, 0.3);
-    }
-    .btn-catalog:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 15px rgba(106, 27, 154, 0.4);
-      background: linear-gradient(135deg, #7b1fa2, #ab47bc);
-    }
+    body { background-color: #f8f9fa; }
+    .navbar { background-color: #6a1b9a; }
+    .navbar-brand, .nav-link, .bi { color: white !important; }
+    #adminPanel .nav-link { color: #6a1b9a !important; border-color: #dee2e6 #dee2e6 #fff; }
+    #adminPanel .nav-link.active { color: white !important; background-color: #6a1b9a !important; border-color: #6a1b9a !important; }
+    #adminPanel .nav-link.active i { color: white !important; }
+    #adminPanel .nav-link i { color: #6a1b9a !important; }
+    .product-card img, .category-card img { height: 200px; object-fit: cover; border-bottom: 1px solid #eee; }
+    .card { border-radius: 0.75rem; box-shadow: 0 4px 8px rgba(0,0,0,0.05); }
+    .btn-primary { background-color: #6a1b9a; border-color: #6a1b9a; }
+    .btn-primary:hover { background-color: #5b1585; border-color: #5b1585; }
+    .category-card { cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; }
+    .category-card:hover { transform: translateY(-5px); box-shadow: 0 8px 16px rgba(0,0,0,0.1); }
+    .seccion { display: none; }
+    .seccion.active { display: block; }
+    .cart-item { transition: all 0.3s; }
+    .cart-item:hover { background-color: #f8f9fa; }
+    .hover-effect { transition: all 0.3s; border: 1px solid #dee2e6 !important; }
+    .hover-effect:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); background-color: #f8f9fa !important; }
+    .btn-catalog { transition: all 0.3s; border: none; background: linear-gradient(135deg, #6a1b9a, #9c27b0); box-shadow: 0 4px 6px rgba(106, 27, 154, 0.3); }
+    .btn-catalog:hover { transform: translateY(-3px); box-shadow: 0 8px 15px rgba(106, 27, 154, 0.4); background: linear-gradient(135deg, #7b1fa2, #ab47bc); }
   </style>
 </head>
 <body>
@@ -98,21 +35,13 @@
 <nav class="navbar navbar-expand-lg">
   <div class="container-fluid">
     <a class="navbar-brand" href="#" onclick="irASeccion('portada')">Cuties Shop</a>
-    
     <div class="d-flex align-items-center">
-      
       <div id="authButtonsContainer" class="d-flex me-3">
-        <button class="btn btn-light btn-sm me-2" onclick="irASeccion('login')">
-            <i class="bi bi-person-circle"></i> Login
-        </button>
-        <button class="btn btn-success btn-sm" onclick="irASeccion('registro')">
-            <i class="bi bi-person-plus"></i> Registro
-        </button>
+        <button class="btn btn-light btn-sm me-2" onclick="irASeccion('login')"><i class="bi bi-person-circle"></i> Login</button>
+        <button class="btn btn-success btn-sm" onclick="irASeccion('registro')"><i class="bi bi-person-plus"></i> Registro</button>
       </div>
 
-      <button class="btn btn-warning btn-sm me-3 d-none" onclick="irASeccion('adminPanel')" id="btnAdminNav">
-        <i class="bi bi-gear-fill"></i> Admin
-      </button>
+      <button class="btn btn-warning btn-sm me-3 d-none" onclick="irASeccion('adminPanel')" id="btnAdminNav"><i class="bi bi-gear-fill"></i> Admin</button>
 
       <div id="userDropdownContainer" class="d-none me-3">
         <div class="dropdown">
@@ -124,7 +53,7 @@
             </ul>
         </div>
       </div>
-      
+
       <button class="btn btn-link nav-link position-relative" onclick="irASeccion('carrito')" id="btnCarrito">
         <i class="bi bi-cart-fill fs-4"></i>
         <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="cartCount">0</span>
@@ -134,51 +63,40 @@
 </nav>
 
 <div class="container my-4">
-
   <div id="portada" class="seccion active">
     <div class="card p-4 text-center">
-      <img src="https://cdn.palbincdn.com/users/48392/images/personalizados-1661933625x1024-1661945814@x768.jpg" 
-           class="img-fluid rounded mb-4" 
-           alt="Portada Cuties Shop"
-           style="max-height: 300px; object-fit: cover;">
-      
+      <img src="https://cdn.palbincdn.com/users/48392/images/personalizados-1661933625x1024-1661945814@x1024.jpg">
       <h2 class="mb-3">Bienvenido a Cuties Shop</h2>
       <p class="lead"><em>"Creando para ti"</em></p>
       <p class="mb-4">Somos una empresa dedicada a la venta de artículos personalizados como tazas, termos, vasos y botellas, hechos con amor para cada cliente.</p>
-      
+
       <div class="row g-3 mb-4">
         <div class="col-md-4">
           <a href="http://wa.me/18096659100" target="_blank" class="text-decoration-none">
             <div class="p-3 border rounded hover-effect bg-light">
-              <img src="https://iili.io/JYCVqgt.png" 
-                   alt="WhatsApp" 
-                   style="width: 50px; height: 50px; object-fit: contain; margin-bottom: 10px;">
+              <img src="https://iili.io/JYCVqgt.png" alt="WhatsApp" style="width: 50px; height: 50px; object-fit: contain; margin-bottom: 10px;">
               <h5 class="mb-1">WhatsApp</h5>
               <p class="mb-0 text-dark">809-665-9100</p>
               <small class="text-muted">(Haz clic para chatear)</small>
             </div>
           </a>
         </div>
-        
+
         <div class="col-md-4">
           <a href="https://www.instagram.com/mariposas_cuties.rd/?igsh=MTk3MHBrdTU4b284Yw%3D%3D#" target="_blank" class="text-decoration-none text-dark">
             <div class="p-3 border rounded hover-effect bg-light">
-              <img src="https://i.pinimg.com/564x/96/cc/7d/96cc7d89411132dd394078c9ef920b69.jpg" 
-                   alt="Instagram" 
-                   style="width: 50px; height: 50px; object-fit: contain; margin-bottom: 10px;">
+              <img src="https://i.pinimg.com/564x/96/cc/7d/96cc7d89411132dd394078c9ef920b69.jpg" alt="Instagram" style="width: 50px; height: 50px; object-fit: contain; margin-bottom: 10px;">
               <h5 class="mb-1">Instagram</h5>
               <p class="mb-0">@mariposas_cuties</p>
               <small class="text-muted">(Haz clic para ver)</small>
             </div>
           </a>
         </div>
-        
+
         <div class="col-md-4">
           <a href="https://maps.app.goo.gl/r6HWDRe1qf6hCogc6" target="_blank" class="text-decoration-none text-dark">
             <div class="p-3 border rounded hover-effect bg-light">
-              <img src="https://cdn-icons-png.flaticon.com/512/854/854878.png" 
-                   alt="Dirección" 
-                   style="width: 50px; height: 50px; object-fit: contain; margin-bottom: 10px;">
+              <img src="https://cdn-icons-png.flaticon.com/512/854/854878.png" alt="Dirección" style="width: 50px; height: 50px; object-fit: contain; margin-bottom: 10px;">
               <h5 class="mb-1">Ubicación</h5>
               <p class="mb-0">Carretera Salcedo-Tenares Km 5</p>
               <small class="text-muted">(Ver en mapa)</small>
@@ -186,7 +104,7 @@
           </a>
         </div>
       </div>
-      
+
       <div class="d-grid">
         <button class="btn btn-primary py-3 btn-catalog" onclick="irASeccion('categorias')">
           <div class="d-flex justify-content-center align-items-center">
@@ -216,18 +134,12 @@
               <label for="loginPass" class="form-label">Contraseña</label>
               <input type="password" id="loginPass" class="form-control" placeholder="Ingresa tu contraseña" required>
             </div>
-            <button type="submit" class="btn btn-primary w-100 mb-3">
-              <i class="bi bi-box-arrow-in-right me-2"></i> Ingresar
-            </button>
+            <button type="submit" class="btn btn-primary w-100 mb-3"><i class="bi bi-box-arrow-in-right me-2"></i> Ingresar</button>
           </form>
           <hr>
           <p class="text-center mb-2">¿No tienes cuenta?</p>
-          <button class="btn btn-outline-success w-100 mb-2" onclick="irASeccion('registro')">
-            <i class="bi bi-person-plus me-2"></i> Crear cuenta nueva
-          </button>
-          <button class="btn btn-outline-secondary w-100" onclick="irASeccion('portada')">
-            <i class="bi bi-arrow-left me-2"></i> Volver a inicio
-          </button>
+          <button class="btn btn-outline-success w-100 mb-2" onclick="irASeccion('registro')"><i class="bi bi-person-plus me-2"></i> Crear cuenta nueva</button>
+          <button class="btn btn-outline-secondary w-100" onclick="irASeccion('portada')"><i class="bi bi-arrow-left me-2"></i> Volver a inicio</button>
         </div>
       </div>
     </div>
@@ -272,17 +184,11 @@
               <label for="regPassConfirm" class="form-label">Confirmar Contraseña *</label>
               <input type="password" id="regPassConfirm" class="form-control" placeholder="Repite tu contraseña" required>
             </div>
-            <button type="submit" class="btn btn-success w-100 mb-3">
-              <i class="bi bi-check-circle me-2"></i> Registrarse
-            </button>
+            <button type="submit" class="btn btn-success w-100 mb-3"><i class="bi bi-check-circle me-2"></i> Registrarse</button>
           </form>
           <hr>
-          <button class="btn btn-outline-primary w-100 mb-2" onclick="irASeccion('login')">
-            <i class="bi bi-box-arrow-in-right me-2"></i> Ya tengo cuenta
-          </button>
-          <button class="btn btn-outline-secondary w-100" onclick="irASeccion('portada')">
-            <i class="bi bi-arrow-left me-2"></i> Volver a inicio
-          </button>
+          <button class="btn btn-outline-primary w-100 mb-2" onclick="irASeccion('login')"><i class="bi bi-box-arrow-in-right me-2"></i> Ya tengo cuenta</button>
+          <button class="btn btn-outline-secondary w-100" onclick="irASeccion('portada')"><i class="bi bi-arrow-left me-2"></i> Volver a inicio</button>
         </div>
       </div>
     </div>
@@ -290,28 +196,20 @@
 
   <div id="categorias" class="seccion">
     <h3 class="mb-4 text-center">Explora Nuestras Categorías</h3>
-    
     <form onsubmit="event.preventDefault(); buscarProductos();" class="mb-4">
       <div class="input-group">
         <input type="text" id="searchInput" class="form-control" placeholder="Buscar productos por nombre..." required>
-        <button class="btn btn-primary" type="submit">
-          <i class="bi bi-search"></i> Buscar
-        </button>
+        <button class="btn btn-primary" type="submit"><i class="bi bi-search"></i> Buscar</button>
       </div>
     </form>
-    
     <div class="row" id="listaCategorias"></div>
-    <button class="btn btn-secondary mt-4" onclick="irASeccion('portada')">
-      <i class="bi bi-arrow-left me-2"></i> Volver a inicio
-    </button>
+    <button class="btn btn-secondary mt-4" onclick="irASeccion('portada')"><i class="bi bi-arrow-left me-2"></i> Volver a inicio</button>
   </div>
 
   <div id="productos" class="seccion">
     <h3 id="tituloCategoria" class="mb-4 text-center"></h3>
     <div class="row" id="listaProductos"></div>
-    <button class="btn btn-secondary mt-4" onclick="irASeccion('categorias')">
-      <i class="bi bi-arrow-left me-2"></i> Volver a categorías
-    </button>
+    <button class="btn btn-secondary mt-4" onclick="irASeccion('categorias')"><i class="bi bi-arrow-left me-2"></i> Volver a categorías</button>
   </div>
 
   <div id="carrito" class="seccion">
@@ -329,9 +227,7 @@
             </tr>
           </thead>
           <tbody id="listaCarrito">
-            <tr>
-              <td colspan="5" class="text-center text-muted">El carrito está vacío.</td>
-            </tr>
+            <tr><td colspan="5" class="text-center text-muted">El carrito está vacío.</td></tr>
           </tbody>
           <tfoot>
             <tr>
@@ -343,21 +239,13 @@
         </table>
       </div>
       <div class="d-flex justify-content-between mt-3">
-        <button class="btn btn-outline-danger" onclick="vaciarCarrito()">
-          <i class="bi bi-trash"></i> Vaciar Carrito
-        </button>
+        <button class="btn btn-outline-danger" onclick="vaciarCarrito()"><i class="bi bi-trash"></i> Vaciar Carrito</button>
         <div>
-          <button class="btn btn-info me-2" onclick="generarCotizacion()">
-            <i class="bi bi-file-earmark-text"></i> Cotizar
-          </button>
-          <button class="btn btn-success" onclick="irASeccion('pago')">
-            <i class="bi bi-credit-card"></i> Pagar
-          </button>
+          <button class="btn btn-info me-2" onclick="generarCotizacion()"><i class="bi bi-file-earmark-text"></i> Cotizar</button>
+          <button class="btn btn-success" onclick="irASeccion('pago')"><i class="bi bi-credit-card"></i> Pagar</button>
         </div>
       </div>
-      <button class="btn btn-secondary mt-3 w-100" onclick="irASeccion('portada')">
-        <i class="bi bi-house me-2"></i> Volver a inicio
-      </button>
+      <button class="btn btn-secondary mt-3 w-100" onclick="irASeccion('portada')"><i class="bi bi-house me-2"></i> Volver a inicio</button>
     </div>
   </div>
 
@@ -385,55 +273,35 @@
                 <input type="text" id="cvv" class="form-control" placeholder="123" maxlength="4" required>
               </div>
             </div>
-            <div class="alert alert-info">
-              <strong>Total a pagar: <span id="totalPago">$0.00</span></strong>
-            </div>
-            <button type="submit" class="btn btn-success w-100 mb-2">
-              <i class="bi bi-check-circle me-2"></i> Confirmar pago
-            </button>
+            <div class="alert alert-info"><strong>Total a pagar: <span id="totalPago">$0.00</span></strong></div>
+            <button type="submit" class="btn btn-success w-100 mb-2"><i class="bi bi-check-circle me-2"></i> Confirmar pago</button>
           </form>
-          <button class="btn btn-outline-secondary w-100" onclick="irASeccion('carrito')">
-            <i class="bi bi-arrow-left me-2"></i> Volver al carrito
-          </button>
+          <button class="btn btn-outline-secondary w-100" onclick="irASeccion('carrito')"><i class="bi bi-arrow-left me-2"></i> Volver al carrito</button>
         </div>
       </div>
     </div>
   </div>
-  
+
   <div id="adminPanel" class="seccion">
     <div class="card p-4">
       <h3 class="mb-4 text-center">⚙️ Panel de Administración</h3>
-      
       <ul class="nav nav-tabs mb-4" id="adminTabs" role="tablist">
         <li class="nav-item" role="presentation">
-          <button class="nav-link active" id="cat-tab" data-bs-toggle="tab" data-bs-target="#adminCategorias" type="button" role="tab" onclick="cargarCategoriasAdmin()">
-            <i class="bi bi-tags-fill me-2"></i> Gestión de Categorías
-          </button>
+          <button class="nav-link active" id="cat-tab" data-bs-toggle="tab" data-bs-target="#adminCategorias" type="button" role="tab" onclick="cargarCategoriasAdmin()"><i class="bi bi-tags-fill me-2"></i> Gestión de Categorías</button>
         </li>
         <li class="nav-item" role="presentation">
-          <button class="nav-link" id="prod-tab" data-bs-toggle="tab" data-bs-target="#adminProductos" type="button" role="tab" onclick="document.getElementById('adminProductSearchInput').value=''; cargarProductosAdmin();">
-            <i class="bi bi-box-seam-fill me-2"></i> Gestión de Productos
-          </button>
+          <button class="nav-link" id="prod-tab" data-bs-toggle="tab" data-bs-target="#adminProductos" type="button" role="tab" onclick="cargarProductosAdmin()"><i class="bi bi-box-seam-fill me-2"></i> Gestión de Productos</button>
         </li>
       </ul>
 
       <div class="tab-content" id="adminTabsContent">
-        
         <div class="tab-pane fade show active" id="adminCategorias" role="tabpanel">
           <h4>Gestión de Categorías</h4>
           <p class="text-muted mb-3">Administra tus categorías. Puedes editar, eliminar o crear nuevas.</p>
-          <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#modalCategoria" onclick="prepararFormularioCategoria()">
-            <i class="bi bi-plus-circle me-2"></i> Nueva Categoría
-          </button>
+          <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#modalCategoria" onclick="prepararFormularioCategoria()"><i class="bi bi-plus-circle me-2"></i> Nueva Categoría</button>
           <div class="table-responsive">
             <table class="table table-striped">
-              <thead>
-                <tr>
-                  <th>Nombre</th>
-                  <th>Productos</th>
-                  <th>Acciones</th>
-                </tr>
-              </thead>
+              <thead><tr><th>Nombre</th><th>Productos</th><th>Acciones</th></tr></thead>
               <tbody id="listaCategoriasAdmin"></tbody>
             </table>
           </div>
@@ -442,179 +310,129 @@
         <div class="tab-pane fade" id="adminProductos" role="tabpanel">
           <h4>Gestión de Productos</h4>
           <p class="text-muted mb-3">Lista completa de todos tus productos.</p>
-          <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#modalProducto" onclick="prepararFormularioProducto()">
-            <i class="bi bi-plus-circle me-2"></i> Nuevo Producto
-          </button>
-          
-          <div class="mb-3">
-            <input type="text" id="adminProductSearchInput" class="form-control" placeholder="Buscar productos por nombre o categoría..." onkeyup="filtrarProductosAdmin()">
+          <div class="input-group mb-3">
+            <input type="text" id="adminSearchProd" class="form-control" placeholder="Buscar producto por nombre...">
+            <button class="btn btn-secondary" onclick="buscarProductoAdmin()"><i class="bi bi-search"></i></button>
           </div>
-          
+          <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#modalProducto" onclick="prepararFormularioProducto()"><i class="bi bi-plus-circle me-2"></i> Nuevo Producto</button>
           <div class="table-responsive">
             <table class="table table-striped">
-              <thead>
-                <tr>
-                  <th>Categoría</th>
-                  <th>Nombre</th>
-                  <th>Precio</th>
-                  <th>Acciones</th>
-                </tr>
-              </thead>
+              <thead><tr><th>Categoría</th><th>Nombre</th><th>Precio</th><th>Acciones</th></tr></thead>
               <tbody id="listaProductosAdmin"></tbody>
             </table>
           </div>
         </div>
-        
       </div>
-      
+
       <div class="d-flex justify-content-between mt-4">
-        <button class="btn btn-outline-secondary" onclick="irASeccion('portada')">
-            <i class="bi bi-house-door me-2"></i> Volver a inicio
-        </button>
-        <button class="btn btn-secondary" onclick="cerrarSesion()">
-            <i class="bi bi-box-arrow-right me-2"></i> Cerrar sesión y Salir
-        </button>
+        <button class="btn btn-outline-secondary" onclick="irASeccion('portada')"><i class="bi bi-house-door me-2"></i> Volver a inicio</button>
+        <button class="btn btn-secondary" onclick="cerrarSesion()"><i class="bi bi-box-arrow-right me-2"></i> Cerrar sesión y Salir</button>
       </div>
     </div>
   </div>
-  
 </div>
 
-<div class="modal fade" id="modalCategoria" tabindex="-1">
-  <div class="modal-dialog">
+<div class="modal fade" id="modalCotizacionResumen" tabindex="-1">
+  <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="modalCategoriaTitulo"></h5>
+        <h5 class="modal-title">📄 Resumen de Cotización</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
       </div>
-      <form onsubmit="event.preventDefault(); guardarCategoria();">
-        <div class="modal-body">
-          <input type="hidden" id="catIndex">
-          <div class="mb-3">
-            <label for="catNombre" class="form-label">Nombre de la Categoría</label>
-            <input type="text" id="catNombre" class="form-control" required>
+      <div class="modal-body">
+        <h6 class="text-primary"><i class="bi bi-person-fill me-2"></i> Datos del Cliente</h6>
+        <div id="cotizacionClienteInfo" class="mb-4 p-3 border rounded bg-light">
           </div>
-          <div class="mb-3">
-            <label for="catImg" class="form-label">URL de Imagen (Referencia)</label>
-            <input type="url" id="catImg" class="form-control" placeholder="https://ejemplo.com/imagen.jpg" required>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-          <button type="submit" class="btn btn-primary">Guardar</button>
-        </div>
-      </form>
-    </div>
-  </div>
-</div>
 
-<div class="modal fade" id="modalProducto" tabindex="-1">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="modalProductoTitulo"></h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        <h6 class="text-primary"><i class="bi bi-box-seam-fill me-2"></i> Productos en Carrito</h6>
+        <div class="table-responsive">
+          <table class="table table-sm table-striped">
+            <thead>
+              <tr>
+                <th>Producto</th>
+                <th class="text-center">Cantidad</th>
+                <th class="text-center">Precio Unit.</th>
+                <th class="text-center">Subtotal</th>
+              </tr>
+            </thead>
+            <tbody id="cotizacionProductosLista">
+              </tbody>
+            <tfoot>
+              <tr class="table-primary">
+                <td colspan="3" class="text-end fw-bold">TOTAL:</td>
+                <td class="text-center fw-bold" id="cotizacionTotal"></td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
       </div>
-      <form onsubmit="event.preventDefault(); guardarProducto();">
-        <div class="modal-body">
-          <input type="hidden" id="prodCatIndex">
-          <input type="hidden" id="prodIndex">
-          <div class="mb-3">
-            <label for="prodCategoria" class="form-label">Categoría</label>
-            <select id="prodCategoria" class="form-select" required></select>
-          </div>
-          <div class="mb-3">
-            <label for="prodNombre" class="form-label">Nombre del Producto</label>
-            <input type="text" id="prodNombre" class="form-control" required>
-          </div>
-          <div class="mb-3">
-            <label for="prodPrecio" class="form-label">Precio ($)</label>
-            <input type="number" id="prodPrecio" class="form-control" step="0.01" min="0.01" required>
-          </div>
-          <div class="mb-3">
-            <label for="prodImg" class="form-label">URL de Imagen (Referencia)</label>
-            <input type="url" id="prodImg" class="form-control" placeholder="https://ejemplo.com/imagen.jpg" required>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-          <button type="submit" class="btn btn-primary">Guardar</button>
-        </div>
-      </form>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="bi bi-x-circle me-2"></i> Cancelar Cotización</button>
+        <button type="button" class="btn btn-success" id="btnDescargarCotizacion"><i class="bi bi-download me-2"></i> Enviar Cotización Ahora</button>
+      </div>
     </div>
   </div>
 </div>
 
-<div class="toast-container position-fixed bottom-0 end-0 p-3">
-  <div id="liveToast" class="toast" role="alert">
-    <div class="toast-header">
-      <strong class="me-auto">Cuties Shop</strong>
-      <button type="button" class="btn-close" data-bs-dismiss="toast"></button>
-    </div>
-    <div class="toast-body" id="toastBody"></div>
-  </div>
-</div>
+<div class="modal fade" id="modalCategoria" tabindex="-1"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="modalCategoriaTitulo"></h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div><form onsubmit="event.preventDefault(); guardarCategoria();"><div class="modal-body"><input type="hidden" id="catIndex"><div class="mb-3"><label for="catNombre" class="form-label">Nombre de la Categoría</label><input type="text" id="catNombre" class="form-control" required></div><div class="mb-3"><label for="catImg" class="form-label">URL de Imagen (Referencia)</label><input type="url" id="catImg" class="form-control" placeholder="https://ejemplo.com/imagen.jpg" required></div></div><div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button><button type="submit" class="btn btn-primary">Guardar</button></div></form></div></div></div>
 
+<div class="modal fade" id="modalProducto" tabindex="-1"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="modalProductoTitulo"></h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div><form onsubmit="event.preventDefault(); guardarProducto();"><div class="modal-body"><input type="hidden" id="prodCatIndex"><input type="hidden" id="prodIndex"><div class="mb-3"><label for="prodCategoria" class="form-label">Categoría</label><select id="prodCategoria" class="form-select" required></select></div><div class="mb-3"><label for="prodNombre" class="form-label">Nombre del Producto</label><input type="text" id="prodNombre" class="form-control" required></div><div class="mb-3"><label for="prodPrecio" class="form-label">Precio ($)</label><input type="number" id="prodPrecio" class="form-control" step="0.01" min="0.01" required></div><div class="mb-3"><label for="prodImg" class="form-label">URL de Imagen (Referencia)</label><input type="url" id="prodImg" class="form-control" placeholder="https://ejemplo.com/imagen.jpg" required></div></div><div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button><button type="submit" class="btn btn-primary">Guardar</button></div></form></div></div></div>
+
+<div class="toast-container position-fixed bottom-0 end-0 p-3"><div id="liveToast" class="toast" role="alert"><div class="toast-header"><strong class="me-auto">Cuties Shop</strong><button type="button" class="btn-close" data-bs-dismiss="toast"></button></div><div class="toast-body" id="toastBody"></div></div></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
 <script>
   // Variables globales
   let usuarios = JSON.parse(localStorage.getItem('usuarios')) || {
-    'admin': {
-      pass: 'admin123',
-      nombre: 'Admin',
-      apellido: 'Sistema',
-      direccion: 'N/A',
-      telefono: 'N/A'
-    }
+    'admin': { pass: 'admin123', nombre: 'Admin', apellido: 'Sistema', direccion: 'N/A', telefono: 'N/A' }
   };
-  
-  let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+
+  // Carrito por usuario se guarda en localStorage con clave carrito_<usuario>
   let usuarioActual = localStorage.getItem('usuarioActual') || null;
   let toastBootstrap;
 
-  // Categorías y productos (Ahora se cargan/guardan de/a localStorage)
-  // *** RESTAURACIÓN DE DATOS: Esta es la data por defecto si localStorage está vacío ***
   let categorias = JSON.parse(localStorage.getItem('categorias')) || [
-    {
-      nombre: "Tazas",
-      img: "https://promoscreativos.com/wp-content/uploads/2021/09/TAZAS-Y-TARROS-SUBLIMABLES-2-1024x840.jpg",
-      productos: [
+    { nombre: "Tazas", img: "https://promoscreativos.com/wp-content/uploads/2021/09/TAZAS-Y-TARROS-SUBLIMABLES-2-1024x840.jpg", productos: [
         { nombre: "Taza Blanca personalizada", precio: 350, img: "https://i0.wp.com/metropolis.com.do/wp-content/uploads/2019/07/tazas-blancas-personalizadas-papeleria-metropolis.jpg?resize=510%2C510&ssl=1" },
         { nombre: "Taza Mágica", precio: 550, img: "https://www.printideasonline.com/cdn/shop/products/Webproductos-27.png?v=1679604739" },
         { nombre: "Taza conica", precio: 450, img: "https://resources.claroshop.com/medios-plazavip/mkt/6472484caa531_taza-ceramica-12oz-c-nica-interior-y-asa-de-colorpng.jpg" },
-      ]
-    },
-    {
-      nombre: "Termos",
-      img: "https://www.brildor.com/blog/wp-content/uploads/2022/05/cabecera-termos-botellas-sublimacion-plancha-tazas-1.jpg",
-      productos: [
+      ] },
+    { nombre: "Termos", img: "https://www.brildor.com/blog/wp-content/uploads/2022/05/cabecera-termos-botellas-sublimacion-plancha-tazas-1.jpg", productos: [
         { nombre: "Termo de Acero Inoxidable", precio: 850, img: "https://colmenero.shop/cdn/shop/products/SUB140_lrg-termo-roio-sublimacion-promocionales.jpg?v=1704911758" },
-      ]
-    },
-    {
-      nombre: "Vasos",
-      img: "https://m.media-amazon.com/images/I/71PQvdyut7L._UF894,1000_QL80_.jpg",
-      productos: [
+      ] },
+    { nombre: "Vasos", img: "https://m.media-amazon.com/images/I/71PQvdyut7L._UF894,1000_QL80_.jpg", productos: [
         { nombre: "Vaso vino", precio: 750, img: "https://geekolor.com/wp-content/uploads/2021/10/vaso-de-acero-300-ml-1.png" },
-      ]
-    }
+      ] }
   ];
 
-  // Instancias de Modals
+  // Modals
   let modalCategoria;
   let modalProducto;
+  let modalCotizacion; // <<< Variable para el nuevo modal
 
-  // ============ FUNCIONES GENERALES ============
-  
+  // ======= Funciones carrito por usuario =======
+  function getCarrito() {
+    if (!usuarioActual) return [];
+    return JSON.parse(localStorage.getItem(`carrito_${usuarioActual}`)) || [];
+  }
+
+  function setCarrito(carritoUser) {
+    if (!usuarioActual) return;
+    localStorage.setItem(`carrito_${usuarioActual}`, JSON.stringify(carritoUser));
+  }
+
+  function limpiarCarritoUsuario() {
+    if (!usuarioActual) return;
+    localStorage.removeItem(`carrito_${usuarioActual}`);
+  }
+  // =============================================
+
   function guardarDatos() {
     localStorage.setItem('usuarios', JSON.stringify(usuarios));
-    localStorage.setItem('carrito', JSON.stringify(carrito));
-    localStorage.setItem('categorias', JSON.stringify(categorias)); // Guardar categorías
-    if (usuarioActual) {
-      localStorage.setItem('usuarioActual', usuarioActual);
-    } else {
-      localStorage.removeItem('usuarioActual');
-    }
+    localStorage.setItem('categorias', JSON.stringify(categorias));
+    if (usuarioActual) localStorage.setItem('usuarioActual', usuarioActual); else localStorage.removeItem('usuarioActual');
   }
 
   function mostrarToast(mensaje) {
@@ -623,89 +441,51 @@
   }
 
   function irASeccion(seccion) {
-    // Ocultar todas las secciones
     document.querySelectorAll('.seccion').forEach(s => s.classList.remove('active'));
-    
-    // Mostrar la sección solicitada
     document.getElementById(seccion).classList.add('active');
-    
-    // Acciones específicas según la sección
-    if (seccion === 'categorias') {
-      cargarCategorias();
-    } else if (seccion === 'carrito') {
-      if (!usuarioActual) {
-        mostrarToast('Debes iniciar sesión para ver tu carrito');
-        irASeccion('login');
-        return;
-      }
+
+    if (seccion === 'categorias') cargarCategorias();
+    else if (seccion === 'carrito') {
+      if (!usuarioActual) { mostrarToast('Debes iniciar sesión para ver tu carrito'); irASeccion('login'); return; }
       cargarCarrito();
     } else if (seccion === 'pago') {
-      if (!usuarioActual) {
-        mostrarToast('Debes iniciar sesión para realizar un pago');
-        irASeccion('login');
-        return;
-      }
-      if (carrito.length === 0) {
-        mostrarToast('Tu carrito está vacío');
-        irASeccion('carrito');
-        return;
-      }
+      if (!usuarioActual) { mostrarToast('Debes iniciar sesión para realizar un pago'); irASeccion('login'); return; }
+      if (getCarrito().length === 0) { mostrarToast('Tu carrito está vacío'); irASeccion('carrito'); return; }
       actualizarTotalPago();
     } else if (seccion === 'adminPanel') {
-        if (usuarioActual !== 'admin') {
-            mostrarToast('Acceso denegado. Solo para administradores.');
-            irASeccion('portada');
-            return;
-        }
-        cargarCategoriasAdmin();
+      if (usuarioActual !== 'admin') { mostrarToast('Acceso denegado. Solo para administradores.'); irASeccion('portada'); return; }
+      cargarCategoriasAdmin();
     }
-    
-    window.scrollTo(0, 0);
+    window.scrollTo(0,0);
   }
 
   function actualizarInterfaz() {
-    // Elementos estáticos en el navbar
     const authBtnContainer = document.getElementById('authButtonsContainer');
     const adminBtnNav = document.getElementById('btnAdminNav');
     const userDropdownContainer = document.getElementById('userDropdownContainer');
-    const userNameNav = document.getElementById('userNameNav'); 
-
+    const userNameNav = document.getElementById('userNameNav');
     const esAdmin = usuarioActual === 'admin';
 
     if (usuarioActual && usuarios[usuarioActual]) {
-      // Logueado
       authBtnContainer.classList.add('d-none');
-      
-      const userName = usuarios[usuarioActual].nombre;
-      userNameNav.innerText = userName;
-
-      if (esAdmin) {
-        // Es Admin: Mostrar botón Admin y ocultar dropdown de usuario normal
-        adminBtnNav.classList.remove('d-none');
-        userDropdownContainer.classList.add('d-none');
-      } else {
-        // Es Usuario normal: Mostrar dropdown de usuario y ocultar botón Admin
-        adminBtnNav.classList.add('d-none');
-        userDropdownContainer.classList.remove('d-none');
-      }
-
+      userNameNav.innerText = usuarios[usuarioActual].nombre;
+      if (esAdmin) { adminBtnNav.classList.remove('d-none'); userDropdownContainer.classList.add('d-none'); }
+      else { adminBtnNav.classList.add('d-none'); userDropdownContainer.classList.remove('d-none'); }
     } else {
-      // No logueado
       authBtnContainer.classList.remove('d-none');
       adminBtnNav.classList.add('d-none');
       userDropdownContainer.classList.add('d-none');
     }
-    
     actualizarContadorCarrito();
   }
 
   function actualizarContadorCarrito() {
+    const carrito = getCarrito();
     const total = carrito.reduce((sum, item) => sum + item.cantidad, 0);
     document.getElementById('cartCount').innerText = total;
   }
-  
-  // ============ FUNCIONES DE AUTENTICACIÓN ============
-  
+
+  // ===== Autenticación =====
   function registrarUsuario() {
     const nombre = document.getElementById('regNombre').value.trim();
     const apellido = document.getElementById('regApellido').value.trim();
@@ -715,34 +495,15 @@
     const password = document.getElementById('regPass').value.trim();
     const passwordConfirm = document.getElementById('regPassConfirm').value.trim();
 
-    if (!nombre || !apellido || !direccion || !telefono || !usuario || !password || !passwordConfirm) {
-      return mostrarToast('Por favor completa todos los campos');
-    }
+    if (!nombre || !apellido || !direccion || !telefono || !usuario || !password || !passwordConfirm) return mostrarToast('Por favor completa todos los campos');
+    if (password.length < 6) return mostrarToast('La contraseña debe tener al menos 6 caracteres');
+    if (password !== passwordConfirm) return mostrarToast('Las contraseñas no coinciden');
+    if (usuarios[usuario]) return mostrarToast('Este usuario ya existe. Elige otro nombre de usuario');
 
-    if (password.length < 6) {
-      return mostrarToast('La contraseña debe tener al menos 6 caracteres');
-    }
-
-    if (password !== passwordConfirm) {
-      return mostrarToast('Las contraseñas no coinciden');
-    }
-
-    if (usuarios[usuario]) {
-      return mostrarToast('Este usuario ya existe. Elige otro nombre de usuario');
-    }
-
-    usuarios[usuario] = {
-      pass: password,
-      nombre: nombre,
-      apellido: apellido,
-      direccion: direccion,
-      telefono: telefono
-    };
-
+    usuarios[usuario] = { pass: password, nombre, apellido, direccion, telefono };
     guardarDatos();
     mostrarToast(`¡Cuenta creada exitosamente, ${nombre}!`);
-    
-    // Limpiar formulario
+
     document.getElementById('regNombre').value = '';
     document.getElementById('regApellido').value = '';
     document.getElementById('regDireccion').value = '';
@@ -750,8 +511,7 @@
     document.getElementById('regUser').value = '';
     document.getElementById('regPass').value = '';
     document.getElementById('regPassConfirm').value = '';
-    
-    // Ir a login
+
     setTimeout(() => irASeccion('login'), 1500);
   }
 
@@ -759,34 +519,24 @@
     const usuario = document.getElementById('loginUser').value.trim();
     const password = document.getElementById('loginPass').value.trim();
 
-    if (!usuario || !password) {
-      return mostrarToast('Por favor ingresa usuario y contraseña');
-    }
-
-    if (!usuarios[usuario]) {
-      return mostrarToast('Usuario no encontrado');
-    }
-
-    if (usuarios[usuario].pass !== password) {
-      return mostrarToast('Contraseña incorrecta');
-    }
+    if (!usuario || !password) return mostrarToast('Por favor ingresa usuario y contraseña');
+    if (!usuarios[usuario]) return mostrarToast('Usuario no encontrado');
+    if (usuarios[usuario].pass !== password) return mostrarToast('Contraseña incorrecta');
 
     usuarioActual = usuario;
     guardarDatos();
     actualizarInterfaz();
-    
     mostrarToast(`¡Bienvenido, ${usuarios[usuario].nombre}!`);
-    
-    // Limpiar formulario
+
     document.getElementById('loginUser').value = '';
     document.getElementById('loginPass').value = '';
-    
-    // Ir a portada
+
     setTimeout(() => irASeccion('portada'), 1000);
   }
 
   function cerrarSesion() {
     if (confirm('¿Estás seguro que deseas cerrar sesión?')) {
+      // <<== CAMBIO: NO BORRAR EL CARRITO AL CERRAR SESIÓN. Se mantiene en localStorage por usuario.
       usuarioActual = null;
       guardarDatos();
       actualizarInterfaz();
@@ -795,212 +545,239 @@
     }
   }
 
-  // ============ FUNCIONES DE CATEGORÍAS Y PRODUCTOS (CLIENTE/ADMIN VIEW) ============
-  
+  // ===== Categorías / Productos (cliente) =====
   function cargarCategorias() {
     const container = document.getElementById('listaCategorias');
     container.innerHTML = '';
-    
     categorias.forEach(cat => {
       const col = document.createElement('div');
       col.className = 'col-md-4 col-lg-3 mb-4';
-      col.innerHTML = `
-        <div class="card h-100 category-card" onclick="verProductos('${cat.nombre}')">
-          <img src="${cat.img}" class="card-img-top" alt="${cat.nombre}">
-          <div class="card-body text-center">
-            <h5 class="card-title">${cat.nombre}</h5>
-            <p class="text-muted mb-0">${cat.productos.length} productos</p>
-          </div>
-        </div>
-      `;
+      col.innerHTML = `<div class="card h-100 category-card" onclick="verProductos('${cat.nombre}')"><img src="${cat.img}" class="card-img-top" alt="${cat.nombre}"><div class="card-body text-center"><h5 class="card-title">${cat.nombre}</h5><p class="text-muted mb-0">${cat.productos.length} productos</p></div></div>`;
       container.appendChild(col);
     });
   }
 
-  // Función generalizada para mostrar productos
   function mostrarProductosEnSeccion(titulo, productos) {
     document.getElementById('tituloCategoria').innerText = titulo;
-    
     const container = document.getElementById('listaProductos');
     container.innerHTML = '';
-    
-    if (productos.length === 0) {
-      container.innerHTML = '<div class="col-12 text-center text-muted py-5">No se encontraron productos en esta selección.</div>';
-    } else {
+    if (productos.length === 0) container.innerHTML = '<div class="col-12 text-center text-muted py-5">No se encontraron productos en esta selección.</div>';
+    else {
       productos.forEach(prod => {
         const col = document.createElement('div');
         col.className = 'col-sm-6 col-md-4 col-lg-3 mb-4';
-        col.innerHTML = `
-          <div class="card h-100 product-card">
-            <img src="${prod.img}" class="card-img-top" alt="${prod.nombre}">
-            <div class="card-body text-center d-flex flex-column">
-              <h5 class="card-title">${prod.nombre}</h5>
-              <p class="card-text text-primary fw-bold fs-5">$${prod.precio.toFixed(2)}</p>
-              <button class="btn btn-primary mt-auto" onclick='agregarAlCarrito(${JSON.stringify(prod)})'>
-                <i class="bi bi-cart-plus me-1"></i> Agregar al carrito
-              </button>
-            </div>
-          </div>
-        `;
+        col.innerHTML = `<div class="card h-100 product-card"><img src="${prod.img}" class="card-img-top" alt="${prod.nombre}"><div class="card-body text-center d-flex flex-column"><h5 class="card-title">${prod.nombre}</h5><p class="card-text text-primary fw-bold fs-5">${prod.precio.toFixed(2)}</p><button class="btn btn-primary mt-auto" onclick='agregarAlCarrito(${JSON.stringify(prod)})'><i class="bi bi-cart-plus me-1"></i> Agregar al carrito</button></div></div>`;
         container.appendChild(col);
       });
     }
-    
     irASeccion('productos');
   }
 
   function verProductos(nombreCategoria) {
     const categoria = categorias.find(c => c.nombre === nombreCategoria);
     if (!categoria) return;
-
     mostrarProductosEnSeccion(`Catálogo: ${categoria.nombre}`, categoria.productos);
   }
 
   function buscarProductos() {
     const query = document.getElementById('searchInput').value.trim().toLowerCase();
-    
-    if (query === '') {
-      mostrarToast('Por favor, ingresa un término de búsqueda.');
-      return;
-    }
-    
+    if (query === '') return mostrarToast('Por favor, ingresa un término de búsqueda.');
     let resultados = [];
-    
-    categorias.forEach(cat => {
-      cat.productos.forEach(prod => {
-        // Buscar por nombre de producto
-        if (prod.nombre.toLowerCase().includes(query) || prod.precio.toString().includes(query)) {
-          // No se preocupen por duplicados, los resultados provienen de la estructura del producto
-          resultados.push(prod);
-        }
-      });
-    });
-    
+    categorias.forEach(cat => cat.productos.forEach(prod => { if (prod.nombre.toLowerCase().includes(query) || prod.precio.toString().includes(query)) resultados.push(prod); }));
     mostrarProductosEnSeccion(`Resultados de Búsqueda para: "${query}"`, resultados);
   }
 
-
-  // ============ FUNCIONES DEL CARRITO Y PAGO ============
-  
+  // ===== Carrito (usuario específico) =====
   function agregarAlCarrito(producto) {
-    if (!usuarioActual) {
-      mostrarToast('Debes iniciar sesión para agregar productos al carrito');
-      irASeccion('login');
-      return;
-    }
-
-    const itemExistente = carrito.find(item => item.nombre === producto.nombre);
-    
-    if (itemExistente) {
-      itemExistente.cantidad++;
-    } else {
-      carrito.push({
-        nombre: producto.nombre,
-        precio: producto.precio,
-        img: producto.img,
-        cantidad: 1
-      });
-    }
-    
-    guardarDatos();
+    if (!usuarioActual) { mostrarToast('Debes iniciar sesión para agregar productos'); irASeccion('login'); return; }
+    const carrito = getCarrito();
+    const item = carrito.find(p => p.nombre === producto.nombre);
+    if (item) item.cantidad++;
+    else carrito.push({ nombre: producto.nombre, precio: producto.precio, img: producto.img, cantidad: 1 });
+    setCarrito(carrito);
     actualizarContadorCarrito();
     mostrarToast(`${producto.nombre} agregado al carrito`);
   }
 
   function cargarCarrito() {
+    const carrito = getCarrito();
     const container = document.getElementById('listaCarrito');
     container.innerHTML = '';
-    
-    if (carrito.length === 0) {
-      container.innerHTML = '<tr><td colspan="5" class="text-center text-muted py-4">Tu carrito está vacío</td></tr>';
-      document.getElementById('totalCarrito').innerText = '$0.00';
-      return;
-    }
-    
+    if (carrito.length === 0) { container.innerHTML = '<tr><td colspan="5" class="text-center text-muted py-4">Tu carrito está vacío</td></tr>'; document.getElementById('totalCarrito').innerText = '$0.00'; return; }
     let total = 0;
-    
     carrito.forEach((item, index) => {
-      const subtotal = item.precio * item.cantidad;
-      total += subtotal;
-      
-      const tr = document.createElement('tr');
-      tr.className = 'cart-item';
-      tr.innerHTML = `
-        <td>
-          <div class="d-flex align-items-center">
-            <img src="${item.img}" alt="${item.nombre}" 
-                 style="width: 60px; height: 60px; object-fit: cover; border-radius: 8px; margin-right: 15px;">
-            <strong>${item.nombre}</strong>
-          </div>
-        </td>
-        <td class="text-center align-middle">$${item.precio.toFixed(2)}</td>
-        <td class="text-center align-middle">
-          <div class="btn-group" role="group">
-            <button class="btn btn-sm btn-outline-secondary" onclick="cambiarCantidad(${index}, -1)">
-              <i class="bi bi-dash"></i>
-            </button>
-            <button class="btn btn-sm btn-outline-secondary" disabled>${item.cantidad}</button>
-            <button class="btn btn-sm btn-outline-secondary" onclick="cambiarCantidad(${index}, 1)">
-              <i class="bi bi-plus"></i>
-            </button>
-          </div>
-        </td>
-        <td class="text-center align-middle fw-bold">$${subtotal.toFixed(2)}</td>
-        <td class="text-center align-middle">
-          <button class="btn btn-sm btn-danger" onclick="eliminarDelCarrito(${index})">
-            <i class="bi bi-trash"></i>
-          </button>
-        </td>
-      `;
+      const subtotal = item.precio * item.cantidad; total += subtotal;
+      const tr = document.createElement('tr'); tr.className = 'cart-item';
+      tr.innerHTML = `<td><div class="d-flex align-items-center"><img src="${item.img}" alt="${item.nombre}" style="width:60px;height:60px;object-fit:cover;border-radius:8px;margin-right:15px;"><strong>${item.nombre}</strong></div></td><td class="text-center align-middle">$${item.precio.toFixed(2)}</td><td class="text-center align-middle"><div class="btn-group" role="group"><button class="btn btn-sm btn-outline-secondary" onclick="cambiarCantidad(${index}, -1)"><i class="bi bi-dash"></i></button><button class="btn btn-sm btn-outline-secondary" disabled>${item.cantidad}</button><button class="btn btn-sm btn-outline-secondary" onclick="cambiarCantidad(${index}, 1)"><i class="bi bi-plus"></i></button></div></td><td class="text-center align-middle fw-bold">$${subtotal.toFixed(2)}</td><td class="text-center align-middle"><button class="btn btn-sm btn-danger" onclick="eliminarDelCarrito(${index})"><i class="bi bi-trash"></i></button></td>`;
       container.appendChild(tr);
     });
-    
     document.getElementById('totalCarrito').innerText = `$${total.toFixed(2)}`;
   }
 
   function cambiarCantidad(index, cambio) {
+    const carrito = getCarrito();
     carrito[index].cantidad += cambio;
-    
-    if (carrito[index].cantidad <= 0) {
-      eliminarDelCarrito(index);
-      return;
-    }
-    
-    guardarDatos();
+    if (carrito[index].cantidad <= 0) carrito.splice(index, 1);
+    setCarrito(carrito);
     actualizarContadorCarrito();
     cargarCarrito();
   }
 
   function eliminarDelCarrito(index) {
-    const producto = carrito[index].nombre;
+    const carrito = getCarrito();
+    const nombre = carrito[index].nombre;
     carrito.splice(index, 1);
-    guardarDatos();
+    setCarrito(carrito);
     actualizarContadorCarrito();
     cargarCarrito();
-    mostrarToast(`${producto} eliminado del carrito`);
+    mostrarToast(`${nombre} eliminado del carrito`);
   }
 
   function vaciarCarrito() {
-    if (confirm('¿Estás seguro que deseas vaciar todo el carrito?')) {
-      carrito = [];
-      guardarDatos();
-      actualizarContadorCarrito();
-      cargarCarrito();
-      mostrarToast('Carrito vaciado');
-    }
+    if (!confirm('¿Estás seguro que deseas vaciar todo el carrito?')) return;
+    limpiarCarritoUsuario();
+    actualizarContadorCarrito();
+    cargarCarrito();
+    mostrarToast('Carrito vaciado');
   }
 
+  // >>> FUNCIÓN NUEVA: Genera el modal resumen de cotización <<<
   function generarCotizacion() {
-    if (carrito.length === 0) {
-      return mostrarToast('El carrito está vacío');
-    }
-    
-    const total = document.getElementById('totalCarrito').innerText;
-    mostrarToast(`Cotización generada. Total: ${total}. ¡Te contactaremos pronto!`);
+    if (!usuarioActual) { mostrarToast('Debes iniciar sesión para generar una cotización'); irASeccion('login'); return; }
+    const carrito = getCarrito();
+    if (carrito.length === 0) return mostrarToast('El carrito está vacío');
+
+    // 1. Obtener datos
+    const cliente = usuarios[usuarioActual] || { nombre: '', apellido: '', telefono: '', direccion: '' };
+    const total = carrito.reduce((sum, item) => sum + item.precio * item.cantidad, 0);
+
+    // 2. Llenar el modal con datos del cliente
+    document.getElementById('cotizacionClienteInfo').innerHTML = `
+      <p class="mb-1"><strong>Nombre:</strong> ${cliente.nombre} ${cliente.apellido}</p>
+      <p class="mb-1"><strong>Teléfono:</strong> ${cliente.telefono}</p>
+      <p class="mb-0"><strong>Dirección:</strong> ${cliente.direccion}</p>
+    `;
+
+    // 3. Llenar el modal con productos
+    const listaProductosContainer = document.getElementById('cotizacionProductosLista');
+    listaProductosContainer.innerHTML = '';
+    carrito.forEach(item => {
+      const subtotal = item.precio * item.cantidad;
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td>${item.nombre}</td>
+        <td class="text-center">${item.cantidad}</td>
+        <td class="text-center">$${item.precio.toFixed(2)}</td>
+        <td class="text-center fw-bold">$${subtotal.toFixed(2)}</td>
+      `;
+      listaProductosContainer.appendChild(tr);
+    });
+
+    // 4. Mostrar el total
+    document.getElementById('cotizacionTotal').innerText = `$${total.toFixed(2)}`;
+
+    // 5. Asignar acción al botón de descarga y mostrar modal
+    const btnDescargar = document.getElementById('btnDescargarCotizacion');
+    // Primero, removemos el listener anterior si existe para evitar duplicados
+    btnDescargar.removeEventListener('click', descargarPDFCotizacion);
+    // Asignamos el nuevo listener
+    btnDescargar.addEventListener('click', descargarPDFCotizacion);
+
+    modalCotizacion.show();
   }
+  // <<< FIN FUNCIÓN GENERAR COTIZACIÓN (MODAL) >>>
+
+
+  // >>> FUNCIÓN NUEVA: Descarga el PDF (antes era la lógica completa de generarCotizacion) <<<
+  function descargarPDFCotizacion() {
+    if (!usuarioActual) { mostrarToast('Error de sesión'); modalCotizacion.hide(); irASeccion('login'); return; }
+    const carrito = getCarrito();
+    const cliente = usuarios[usuarioActual] || { nombre: '', apellido: '', telefono: '', direccion: '' };
+    
+    // Generar ID y fecha
+    const fecha = new Date();
+    const fechaStr = fecha.toLocaleString();
+    const cotId = 'COT-' + fecha.getTime();
+
+    // Usar jsPDF para crear PDF (formato simple)
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF({ unit: 'pt', format: 'a4' });
+    let y = 40;
+    doc.setFontSize(18);
+    doc.text('Cotización - Cuties Shop', 40, y);
+    y += 24;
+    doc.setFontSize(11);
+    doc.text(`Fecha: ${fechaStr}`, 40, y);
+    doc.text(`Cotización N°: ${cotId}`, 420, y);
+    y += 18;
+    doc.text(`Cliente: ${cliente.nombre || ''} ${cliente.apellido || ''}`, 40, y);
+    y += 16;
+    doc.text(`Teléfono: ${cliente.telefono || ''}`, 40, y);
+    y += 16;
+    doc.text(`Dirección: ${cliente.direccion || ''}`, 40, y);
+    y += 24;
+
+    // Tabla encabezado
+    doc.setFontSize(12);
+    doc.text('Producto', 40, y);
+    doc.text('Cant.', 330, y);
+    doc.text('P.Unit', 380, y);
+    doc.text('Subtotal', 470, y);
+    y += 8;
+    doc.setLineWidth(0.5);
+    doc.line(40, y, 550, y);
+    y += 16;
+
+    let total = 0;
+    doc.setFontSize(11);
+
+    carrito.forEach((item, idx) => {
+      const subtotal = item.precio * item.cantidad;
+      total += subtotal;
+
+      // Si se acerca al final de la página, hacer nueva página
+      if (y > 720) {
+        doc.addPage();
+        y = 40;
+      }
+
+      // Texto (ajustar nombre si muy largo)
+      let nombreProd = item.nombre;
+      const maxNombreChars = 40;
+      if (nombreProd.length > maxNombreChars) nombreProd = nombreProd.substring(0, maxNombreChars - 3) + '...';
+
+      doc.text(nombreProd, 40, y);
+      doc.text(String(item.cantidad), 330, y);
+      doc.text(`$${item.precio.toFixed(2)}`, 380, y);
+      doc.text(`$${subtotal.toFixed(2)}`, 470, y);
+      y += 18;
+    });
+
+    y += 8;
+    doc.setLineWidth(0.5);
+    doc.line(40, y, 550, y);
+    y += 18;
+    doc.setFontSize(13);
+    doc.text(`TOTAL: $${total.toFixed(2)}`, 420, y);
+
+    // Pie
+    y += 40;
+    doc.setFontSize(10);
+    doc.text('Gracias por preferir Cuties Shop. Para más información contáctanos por WhatsApp: 809-665-100', 40, y);
+
+    // Descargar PDF
+    doc.save(`Cotizacion_${cotId}.pdf`);
+    mostrarToast('Cotización generada. Descarga iniciada.');
+    
+    // Cerrar modal
+    modalCotizacion.hide();
+  }
+  // <<< FIN FUNCIÓN DESCARGAR PDF >>>
+
 
   function actualizarTotalPago() {
-    const total = carrito.reduce((sum, item) => sum + (item.precio * item.cantidad), 0);
+    const carrito = getCarrito();
+    const total = carrito.reduce((sum, item) => sum + item.precio * item.cantidad, 0);
     document.getElementById('totalPago').innerText = `$${total.toFixed(2)}`;
   }
 
@@ -1010,63 +787,34 @@
     const fecha = document.getElementById('fechaExpiracion').value.trim();
     const cvv = document.getElementById('cvv').value.trim();
 
-    if (!titular || !tarjeta || !fecha || !cvv) {
-      return mostrarToast('Por favor completa todos los campos');
-    }
+    if (!titular || !tarjeta || !fecha || !cvv) return mostrarToast('Por favor completa todos los campos');
+    if (tarjeta.length !== 16 || !/^\d+$/.test(tarjeta)) return mostrarToast('Número de tarjeta inválido (debe tener 16 dígitos)');
+    if (!/^\d{2}\/\d{2}$/.test(fecha)) return mostrarToast('Fecha de expiración inválida (formato: MM/AA)');
+    if ((cvv.length !== 3 && cvv.length !== 4) || !/^\d+$/.test(cvv)) return mostrarToast('CVV inválido (debe tener 3 o 4 dígitos)');
 
-    if (tarjeta.length !== 16 || !/^\d+$/.test(tarjeta)) {
-      return mostrarToast('Número de tarjeta inválido (debe tener 16 dígitos)');
-    }
-
-    if (!/^\d{2}\/\d{2}$/.test(fecha)) {
-      return mostrarToast('Fecha de expiración inválida (formato: MM/AA)');
-    }
-
-    if ((cvv.length !== 3 && cvv.length !== 4) || !/^\d+$/.test(cvv)) {
-      return mostrarToast('CVV inválido (debe tener 3 o 4 dígitos)');
-    }
-
-    // Simular procesamiento
     mostrarToast('Procesando pago...');
-    
     setTimeout(() => {
       mostrarToast('¡Pago realizado exitosamente! Gracias por tu compra');
-      
-      // Limpiar carrito y formulario
-      carrito = [];
-      guardarDatos();
+
+      // Limpiar carrito del usuario que pagó
+      limpiarCarritoUsuario();
       actualizarContadorCarrito();
-      
+
       document.getElementById('nombreTitular').value = '';
       document.getElementById('numeroTarjeta').value = '';
       document.getElementById('fechaExpiracion').value = '';
       document.getElementById('cvv').value = '';
-      
-      // Volver a portada
+
       setTimeout(() => irASeccion('portada'), 2000);
     }, 1500);
   }
 
-  // ============ FUNCIONES CRUD (ADMIN) - CATEGORÍAS ============
-
+  // ====== CRUD Admin - Categorias y Productos ======
   function cargarCategoriasAdmin() {
-    const container = document.getElementById('listaCategoriasAdmin');
-    container.innerHTML = '';
-    
+    const container = document.getElementById('listaCategoriasAdmin'); container.innerHTML = '';
     categorias.forEach((cat, index) => {
       const tr = document.createElement('tr');
-      tr.innerHTML = `
-        <td>${cat.nombre}</td>
-        <td>${cat.productos.length}</td>
-        <td>
-          <button class="btn btn-sm btn-warning me-2" data-bs-toggle="modal" data-bs-target="#modalCategoria" onclick="prepararFormularioCategoria(${index})">
-            <i class="bi bi-pencil-square"></i> Editar
-          </button>
-          <button class="btn btn-sm btn-danger" onclick="eliminarCategoria(${index})">
-            <i class="bi bi-trash"></i> Eliminar
-          </button>
-        </td>
-      `;
+      tr.innerHTML = `<td>${cat.nombre}</td><td>${cat.productos.length}</td><td><button class="btn btn-sm btn-warning me-2" data-bs-toggle="modal" data-bs-target="#modalCategoria" onclick="prepararFormularioCategoria(${index})"><i class="bi bi-pencil-square"></i> Editar</button><button class="btn btn-sm btn-danger" onclick="eliminarCategoria(${index})"><i class="bi bi-trash"></i> Eliminar</button></td>`;
       container.appendChild(tr);
     });
   }
@@ -1076,43 +824,25 @@
     const catNombre = document.getElementById('catNombre');
     const catImg = document.getElementById('catImg');
     const catIndex = document.getElementById('catIndex');
-
-    if (index === -1) {
-      modalTitle.innerText = 'Crear Nueva Categoría';
-      catNombre.value = '';
-      catImg.value = '';
-      catIndex.value = '';
-    } else {
-      modalTitle.innerText = 'Editar Categoría';
-      const categoria = categorias[index];
-      catNombre.value = categoria.nombre;
-      catImg.value = categoria.img;
-      catIndex.value = index;
-    }
+    if (index === -1) { modalTitle.innerText = 'Crear Nueva Categoría'; catNombre.value = ''; catImg.value = ''; catIndex.value = ''; }
+    else { modalTitle.innerText = 'Editar Categoría'; const categoria = categorias[index]; catNombre.value = categoria.nombre; catImg.value = categoria.img; catIndex.value = index; }
   }
 
   function guardarCategoria() {
     const catNombre = document.getElementById('catNombre').value.trim();
     const catImg = document.getElementById('catImg').value.trim();
     const index = document.getElementById('catIndex').value;
-
     if (!catNombre || !catImg) return mostrarToast('Completa todos los campos');
-
     if (index === '') {
-      // Crear nueva
-      if (categorias.find(c => c.nombre.toLowerCase() === catNombre.toLowerCase())) {
-          return mostrarToast('Ya existe una categoría con ese nombre.');
-      }
+      if (categorias.find(c => c.nombre.toLowerCase() === catNombre.toLowerCase())) return mostrarToast('Ya existe una categoría con ese nombre.');
       categorias.push({ nombre: catNombre, img: catImg, productos: [] });
       mostrarToast(`Categoría "${catNombre}" creada.`);
     } else {
-      // Editar existente
       const oldNombre = categorias[index].nombre;
       categorias[index].nombre = catNombre;
       categorias[index].img = catImg;
       mostrarToast(`Categoría "${oldNombre}" actualizada a "${catNombre}".`);
     }
-
     modalCategoria.hide();
     guardarDatos();
     cargarCategoriasAdmin();
@@ -1128,108 +858,33 @@
     }
   }
 
-  // ============ FUNCIONES CRUD (ADMIN) - PRODUCTOS ============
-
+  // ===== Admin productos =====
   function cargarProductosAdmin() {
-    const container = document.getElementById('listaProductosAdmin');
-    container.innerHTML = '';
-    
-    // Obtener el valor de búsqueda
-    const searchInput = document.getElementById('adminProductSearchInput');
-    const query = (searchInput && searchInput.value) ? searchInput.value.trim().toLowerCase() : '';
-
-    let totalProductosEncontrados = 0;
-
+    const container = document.getElementById('listaProductosAdmin'); container.innerHTML = '';
     categorias.forEach((cat, catIndex) => {
       cat.productos.forEach((prod, prodIndex) => {
-        // Criterio de filtrado: Nombre de producto o nombre de categoría
-        const match = prod.nombre.toLowerCase().includes(query) || cat.nombre.toLowerCase().includes(query);
-        
-        if (query === '' || match) {
-          totalProductosEncontrados++;
-          const tr = document.createElement('tr');
-          tr.innerHTML = `
-            <td>${cat.nombre}</td>
-            <td>${prod.nombre}</td>
-            <td>$${prod.precio.toFixed(2)}</td>
-            <td>
-              <button class="btn btn-sm btn-warning me-2" data-bs-toggle="modal" data-bs-target="#modalProducto" onclick="prepararFormularioProducto(${catIndex}, ${prodIndex})">
-                <i class="bi bi-pencil-square"></i> Editar
-              </button>
-              <button class="btn btn-sm btn-danger" onclick="eliminarProducto(${catIndex}, ${prodIndex})">
-                <i class="bi bi-trash"></i> Eliminar
-              </button>
-            </td>
-          `;
-          container.appendChild(tr);
-        }
+        const tr = document.createElement('tr');
+        tr.innerHTML = `<td>${cat.nombre}</td><td>${prod.nombre}</td><td>$${prod.precio.toFixed(2)}</td><td><button class="btn btn-sm btn-warning me-2" data-bs-toggle="modal" data-bs-target="#modalProducto" onclick="prepararFormularioProducto(${catIndex}, ${prodIndex})"><i class="bi bi-pencil-square"></i> Editar</button><button class="btn btn-sm btn-danger" onclick="eliminarProducto(${catIndex}, ${prodIndex})"><i class="bi bi-trash"></i> Eliminar</button></td>`;
+        container.appendChild(tr);
       });
     });
-    
-    if (totalProductosEncontrados === 0 && query !== '') {
-        container.innerHTML = `<tr><td colspan="4" class="text-center text-muted py-4">No se encontraron productos que coincidan con "${query}".</td></tr>`;
-    } else if (totalProductosEncontrados === 0) {
-         container.innerHTML = `<tr><td colspan="4" class="text-center text-muted py-4">No hay productos registrados.</td></tr>`;
-    }
-
-    // Rellenar el selector de categorías para el modal de productos
     rellenarSelectorCategorias();
-  }
-  
-  function filtrarProductosAdmin() {
-      // Esta función es llamada en el evento onkeyup del input
-      // Si el input existe, llama a cargarProductosAdmin para actualizar la lista
-      if (document.getElementById('adminProductSearchInput')) {
-          cargarProductosAdmin();
-      }
   }
 
   function rellenarSelectorCategorias() {
-    const selector = document.getElementById('prodCategoria');
-    selector.innerHTML = '<option value="">Selecciona una categoría</option>';
-    categorias.forEach((cat, index) => {
-      const option = document.createElement('option');
-      option.value = index;
-      option.innerText = cat.nombre;
-      selector.appendChild(option);
-    });
+    const selector = document.getElementById('prodCategoria'); selector.innerHTML = '<option value="">Selecciona una categoría</option>';
+    categorias.forEach((cat, index) => { const option = document.createElement('option'); option.value = index; option.innerText = cat.nombre; selector.appendChild(option); });
   }
 
   function prepararFormularioProducto(catIndex = -1, prodIndex = -1) {
     const modalTitle = document.getElementById('modalProductoTitulo');
-    const prodNombre = document.getElementById('prodNombre');
-    const prodPrecio = document.getElementById('prodPrecio');
-    const prodImg = document.getElementById('prodImg');
-    const selectorCat = document.getElementById('prodCategoria');
-    const prodCatIndex = document.getElementById('prodCatIndex');
-    const prodIndexInput = document.getElementById('prodIndex');
-    
+    const prodNombre = document.getElementById('prodNombre'); const prodPrecio = document.getElementById('prodPrecio'); const prodImg = document.getElementById('prodImg'); const selectorCat = document.getElementById('prodCategoria'); const prodCatIndex = document.getElementById('prodCatIndex'); const prodIndexInput = document.getElementById('prodIndex');
     rellenarSelectorCategorias();
-
-    if (prodIndex === -1) {
-      modalTitle.innerText = 'Crear Nuevo Producto';
-      prodNombre.value = '';
-      prodPrecio.value = '';
-      prodImg.value = '';
-      prodCatIndex.value = '';
-      prodIndexInput.value = '';
-      
-      if (catIndex !== -1) {
-          selectorCat.value = catIndex;
-      } else {
-          selectorCat.value = '';
-      }
-      
-    } else {
+    if (prodIndex === -1) { modalTitle.innerText = 'Crear Nuevo Producto'; prodNombre.value = ''; prodPrecio.value = ''; prodImg.value = ''; prodCatIndex.value = ''; prodIndexInput.value = ''; if (catIndex !== -1) selectorCat.value = catIndex; else selectorCat.value = ''; }
+    else {
       modalTitle.innerText = 'Editar Producto';
       const producto = categorias[catIndex].productos[prodIndex];
-      
-      prodNombre.value = producto.nombre;
-      prodPrecio.value = producto.precio;
-      prodImg.value = producto.img;
-      selectorCat.value = catIndex;
-      prodCatIndex.value = catIndex;
-      prodIndexInput.value = prodIndex;
+      prodNombre.value = producto.nombre; prodPrecio.value = producto.precio; prodImg.value = producto.img; selectorCat.value = catIndex; prodCatIndex.value = catIndex; prodIndexInput.value = prodIndex;
     }
   }
 
@@ -1241,48 +896,44 @@
     const oldCatIndex = document.getElementById('prodCatIndex').value === '' ? -1 : parseInt(document.getElementById('prodCatIndex').value);
     const prodIndex = document.getElementById('prodIndex').value === '' ? -1 : parseInt(document.getElementById('prodIndex').value);
 
-    if (isNaN(catIndex) || !prodNombre || isNaN(prodPrecio) || !prodImg) {
-      return mostrarToast('Completa todos los campos correctamente');
-    }
-    
+    if (isNaN(catIndex) || !prodNombre || isNaN(prodPrecio) || !prodImg) return mostrarToast('Completa todos los campos correctamente');
+
     const nuevoProducto = { nombre: prodNombre, precio: prodPrecio, img: prodImg };
-    let oldNombre = null; // Variable para rastrear el nombre anterior
+    let oldNombre = null;
 
     if (prodIndex === -1) {
-      // Crear nuevo producto
       categorias[catIndex].productos.push(nuevoProducto);
       mostrarToast(`Producto "${prodNombre}" creado en ${categorias[catIndex].nombre}.`);
     } else {
-      // Editar existente
       const oldProducto = categorias[oldCatIndex].productos[prodIndex];
-      oldNombre = oldProducto.nombre; // Capturar el nombre anterior
+      oldNombre = oldProducto.nombre;
+      if (catIndex === oldCatIndex) { categorias[catIndex].productos[prodIndex] = nuevoProducto; mostrarToast(`Producto "${prodNombre}" actualizado.`); }
+      else { categorias[oldCatIndex].productos.splice(prodIndex, 1); categorias[catIndex].productos.push(nuevoProducto); mostrarToast(`Producto "${prodNombre}" movido a ${categorias[catIndex].nombre}.`); }
 
-      if (catIndex === oldCatIndex) {
-        // Mismo producto, misma categoría
-        categorias[catIndex].productos[prodIndex] = nuevoProducto;
-        mostrarToast(`Producto "${prodNombre}" actualizado.`);
-      } else {
-        // Mover producto a otra categoría
-        categorias[oldCatIndex].productos.splice(prodIndex, 1); // Eliminar de la vieja
-        categorias[catIndex].productos.push(nuevoProducto); // Agregar a la nueva
-        mostrarToast(`Producto "${prodNombre}" movido a ${categorias[catIndex].nombre}.`);
-      }
-      
-      // --- LÓGICA DE ACTUALIZACIÓN DE CARRITO (NUEVO) ---
+      // Actualizar en los carritos de todos los usuarios
       let cartUpdated = false;
-      // Usar oldNombre para encontrar los productos en el carrito, y luego actualizar nombre y precio.
-      carrito.forEach(item => {
-          if (item.nombre === oldNombre) {
-              item.nombre = nuevoProducto.nombre; // Actualizar el nombre si cambió
-              item.precio = nuevoProducto.precio;   // Actualizar el precio
+      for (let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i);
+        if (!key) continue;
+        if (key.startsWith('carrito_')) {
+          try {
+            const userCart = JSON.parse(localStorage.getItem(key)) || [];
+            let changed = false;
+            userCart.forEach(item => {
+              if (item.nombre === oldNombre) {
+                item.nombre = nuevoProducto.nombre;
+                item.precio = nuevoProducto.precio;
+                changed = true;
+              }
+            });
+            if (changed) {
+              localStorage.setItem(key, JSON.stringify(userCart));
               cartUpdated = true;
-          }
-      });
-
-      if (cartUpdated) {
-          mostrarToast(`Precios y nombre de "${oldNombre}" actualizados en todos los carritos activos.`);
+            }
+          } catch (e) { /* ignorar datos corruptos */ }
+        }
       }
-      // --------------------------------------------------------
+      if (cartUpdated) mostrarToast(`Precios y nombre de "${oldNombre}" actualizados en los carritos afectados.`);
     }
 
     modalProducto.hide();
@@ -1300,15 +951,25 @@
     }
   }
 
-  // ============ FORMATEO DE CAMPOS ============
-  
+  // ===== Buscador admin =====
+  function buscarProductoAdmin() {
+    const query = document.getElementById('adminSearchProd').value.trim().toLowerCase();
+    const container = document.getElementById('listaProductosAdmin'); container.innerHTML = '';
+    categorias.forEach((cat, catIndex) => {
+      cat.productos.forEach((prod, prodIndex) => {
+        if (prod.nombre.toLowerCase().includes(query)) {
+          container.innerHTML += `<tr><td>${cat.nombre}</td><td>${prod.nombre}</td><td>$${prod.precio.toFixed(2)}</td><td><button class="btn btn-sm btn-warning me-2" data-bs-toggle="modal" data-bs-target="#modalProducto" onclick="prepararFormularioProducto(${catIndex}, ${prodIndex})"><i class="bi bi-pencil-square"></i> Editar</button><button class="btn btn-sm btn-danger" onclick="eliminarProducto(${catIndex}, ${prodIndex})"><i class="bi bi-trash"></i> Eliminar</button></td></tr>`;
+        }
+      });
+    });
+  }
+
+  // Formatos
   function configurarFormatoTarjeta() {
     const inputTarjeta = document.getElementById('numeroTarjeta');
     inputTarjeta.addEventListener('input', function(e) {
       let valor = e.target.value.replace(/\s/g, '');
-      if (valor.length > 0) {
-        valor = valor.match(/.{1,4}/g).join(' ');
-      }
+      if (valor.length > 0) valor = valor.match(/.{1,4}/g).join(' ');
       e.target.value = valor;
     });
   }
@@ -1317,35 +978,27 @@
     const inputFecha = document.getElementById('fechaExpiracion');
     inputFecha.addEventListener('input', function(e) {
       let valor = e.target.value.replace(/\D/g, '');
-      if (valor.length >= 2) {
-        valor = valor.substring(0, 2) + '/' + valor.substring(2, 4);
-      }
+      if (valor.length >= 2) valor = valor.substring(0, 2) + '/' + valor.substring(2, 4);
       e.target.value = valor;
     });
   }
 
-  // ============ INICIALIZACIÓN ============
-  
+  // Inicialización
   document.addEventListener('DOMContentLoaded', () => {
-    // Inicializar Toast y Modals
     toastBootstrap = new bootstrap.Toast(document.getElementById('liveToast'));
     modalCategoria = new bootstrap.Modal(document.getElementById('modalCategoria'));
     modalProducto = new bootstrap.Modal(document.getElementById('modalProducto'));
-
-    // Asignar funciones de formato
+    modalCotizacion = new bootstrap.Modal(document.getElementById('modalCotizacionResumen')); // <<< Inicialización del nuevo modal
     configurarFormatoTarjeta();
     configurarFormatoFecha();
-    
-    // Cargar interfaz y redirigir
     actualizarInterfaz();
-    irASeccion('portada'); 
-    
-    // Guardar datos iniciales si es la primera vez (para el admin y categorías)
-    guardarDatos(); 
+    irASeccion('portada');
+    guardarDatos();
   });
 </script>
 </body>
 </html>
+
 
 
 
